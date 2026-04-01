@@ -137,7 +137,7 @@
       text-transform: uppercase;
       padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 1.75rem;
     }
-    .hero-eyebrow::before { content: "⚾"; }
+    .hero-eyebrow::before { content: ""; }
     .hero-h1 {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
@@ -265,11 +265,17 @@
       width: 100%; aspect-ratio: 16/9;
       background: #f0f0f0;
       display: flex; align-items: center; justify-content: center;
-      font-size: 2.5rem; position: relative;
+      position: relative;
       border-bottom: 1px solid var(--border);
       overflow: hidden;
     }
     .product-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+    .prod-img-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 4rem; letter-spacing: 0.04em;
+      text-transform: uppercase; color: rgba(255,255,255,0.07);
+      user-select: none; pointer-events: none; text-align: center; line-height: 1;
+    }
     .prod-tag {
       position: absolute; top: 0.65rem; left: 0.65rem;
       font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em;
@@ -340,8 +346,8 @@
       width: 42px; height: 42px; flex-shrink: 0;
       background: rgba(204,34,0,0.08); border: 1px solid rgba(204,34,0,0.15);
       border-radius: 8px; display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem;
     }
+    .feat-icon svg { width: 18px; height: 18px; stroke: var(--red); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
     .feat-text h4 { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.25rem; color: var(--black); }
     .feat-text p  { color: var(--text-muted); font-size: 0.82rem; line-height: 1.55; }
     .login-card {
@@ -389,7 +395,12 @@
       transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
     }
     .comm-card:hover { border-color: rgba(204,34,0,0.25); transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,0.07); }
-    .comm-card .icon { font-size: 2.25rem; margin-bottom: 1rem; }
+    .comm-card .icon {
+      width: 48px; height: 48px; margin: 0 auto 1rem;
+      background: rgba(204,34,0,0.07); border: 1px solid rgba(204,34,0,0.15);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    }
+    .comm-card .icon svg { width: 20px; height: 20px; stroke: var(--red); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
     .comm-card h4 {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900; font-size: 1.35rem; text-transform: uppercase;
@@ -418,33 +429,41 @@
     .testi-author { display: flex; align-items: center; gap: 0.75rem; }
     .testi-avatar {
       width: 38px; height: 38px; border-radius: 50%;
-      background: #ececec; border: 2px solid rgba(204,34,0,0.25);
-      display: flex; align-items: center; justify-content: center; font-size: 0.95rem;
+      background: rgba(204,34,0,0.08); border: 2px solid rgba(204,34,0,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 0.85rem; letter-spacing: 0.04em;
+      color: var(--red); flex-shrink: 0;
     }
     .testi-name { font-weight: 700; font-size: 0.85rem; color: var(--black); }
     .testi-role { font-size: 0.73rem; color: var(--text-light); }
 
     /* ── Instagram ── */
     #social { background: var(--bg); }
-    .social-head {
-      display: flex; align-items: flex-end; justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem;
+    .ig-feature {
+      max-width: 680px; margin: 0 auto; text-align: center; padding: 2rem 0;
     }
-    .ig-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; }
-    .ig-tile {
-      aspect-ratio: 1; background: #ececec; border-radius: 5px;
-      overflow: hidden; position: relative; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: opacity 0.2s;
+    .ig-handle-block {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      border: 1px solid var(--border); border-radius: 100px;
+      padding: 0.6rem 1.5rem; margin: 2rem 0;
+      font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em;
+      color: var(--text-muted); transition: border-color 0.2s, color 0.2s;
     }
-    .ig-tile:hover { opacity: 0.75; }
-    .ig-tile-inner {
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; gap: 0.4rem;
-      color: var(--text-light); font-size: 0.68rem; text-align: center; padding: 0.4rem;
+    .ig-handle-block:hover { border-color: #cc2366; color: #cc2366; }
+    .ig-handle-block .ig-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: linear-gradient(135deg,#f09433,#cc2366);
+      flex-shrink: 0;
     }
-    .ig-tile-inner .ig-em { font-size: 1.5rem; }
-    .ig-cta { margin-top: 2rem; text-align: center; }
+    .ig-follower-count {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 3rem; color: var(--black); line-height: 1;
+    }
+    .ig-follower-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--text-light); margin-bottom: 2rem;
+    }
     .btn-ig {
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
@@ -483,8 +502,10 @@
       width: 34px; height: 34px; background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.1); border-radius: 5px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.95rem; transition: border-color 0.2s;
+      transition: border-color 0.2s;
     }
+    .f-social svg { width: 15px; height: 15px; stroke: rgba(255,255,255,0.6); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .f-social:hover svg { stroke: rgba(255,255,255,0.95); }
     .f-social:hover { border-color: var(--red); }
     .footer-col h5 {
       font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
@@ -557,7 +578,7 @@
     <div class="hero-bg"></div>
     <div class="hero-grid-lines"></div>
     <div class="hero-content">
-      <div class="hero-eyebrow">Performance Training · Digital Programs · 1:1 Coaching</div>
+      <div class="hero-eyebrow">Performance Training &nbsp;·&nbsp; Digital Programs &nbsp;·&nbsp; 1-on-1 Coaching</div>
       <h1 class="hero-h1">BEHIND<br/><span class="accent">THE SEAMS</span><br/>BASEBALL</h1>
       <p class="hero-sub">Helping hitters increase Exit Velocity, Power &amp; Consistency. Science-backed programs from a B.S. in Sports Performance &amp; former D2 athlete — Joseph Kummick.</p>
       <div class="hero-btns">
@@ -630,12 +651,12 @@
 
       <!-- Training Programs -->
       <div class="shop-category fade-up">
-        <div class="cat-label">⚾ Training Programs</div>
+        <div class="cat-label">Training Programs</div>
         <div class="products-grid">
 
           <div class="product-card">
             <div class="product-img" style="background:linear-gradient(135deg,#1a0808,#2a0a0a)">
-              📋
+              <div class="prod-img-label">BTS</div>
               <div class="prod-tag tag-white">Flagship</div>
             </div>
             <div class="product-body">
@@ -650,7 +671,7 @@
 
           <div class="product-card">
             <div class="product-img" style="background:linear-gradient(135deg,#080f1a,#0a1528)">
-              💥
+              <div class="prod-img-label">EV</div>
               <div class="prod-tag tag-red">Popular</div>
             </div>
             <div class="product-body">
@@ -665,7 +686,7 @@
 
           <div class="product-card">
             <div class="product-img" style="background:linear-gradient(135deg,#0a1208,#0f1f0f)">
-              ⚡
+              <div class="prod-img-label">SPD</div>
               <div class="prod-tag tag-red">Speed</div>
             </div>
             <div class="product-body">
@@ -680,7 +701,7 @@
 
           <div class="product-card">
             <div class="product-img" style="background:linear-gradient(135deg,#0a0a1a,#101028)">
-              🔄
+              <div class="prod-img-label">SB</div>
               <div class="prod-tag tag-sale">Recovery</div>
             </div>
             <div class="product-body">
@@ -695,7 +716,7 @@
 
           <div class="product-card">
             <div class="product-img" style="background:linear-gradient(135deg,#0f0a08,#1a1008)">
-              🦾
+              <div class="prod-img-label">ARM</div>
               <div class="prod-tag tag-red">Arm Health</div>
             </div>
             <div class="product-body">
@@ -710,7 +731,7 @@
 
           <div class="product-card">
             <div class="product-img" style="background:linear-gradient(135deg,#0a1208,#102014)">
-              🏆
+              <div class="prod-img-label">YSS</div>
               <div class="prod-tag tag-red" style="background:#FFD700;color:#000">★ 5.0</div>
             </div>
             <div class="product-body">
@@ -725,7 +746,7 @@
 
           <div class="product-card" style="border-color:rgba(204,34,0,0.25)">
             <div class="product-img" style="background:linear-gradient(135deg,#1a0808,#2a1010)">
-              🤝
+              <div class="prod-img-label">1:1</div>
               <div class="prod-tag tag-sale">Premium</div>
             </div>
             <div class="product-body">
@@ -743,12 +764,12 @@
 
       <!-- Nutrition Guides -->
       <div class="shop-category fade-up">
-        <div class="cat-label">🥗 Nutrition & Performance</div>
+        <div class="cat-label">Nutrition & Performance</div>
         <div class="products-grid">
 
           <div class="product-card">
             <div class="product-img" style="background:linear-gradient(135deg,#0a1008,#0f1f10)">
-              🍽️
+              <div class="prod-img-label">GDN</div>
               <div class="prod-tag tag-red">Game Day</div>
             </div>
             <div class="product-body">
@@ -763,7 +784,7 @@
 
           <div class="product-card">
             <div class="product-img" style="background:linear-gradient(135deg,#0a0f18,#101828)">
-              💪
+              <div class="prod-img-label">NUT</div>
               <div class="prod-tag tag-red">Nutrition</div>
             </div>
             <div class="product-body">
@@ -813,28 +834,28 @@
         <div class="features-list fade-up">
           <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:0.5rem;line-height:1.7">Members get instant access to the full training library, community, and exclusive content all in one place.</p>
           <div class="feat">
-            <div class="feat-icon">📹</div>
+            <div class="feat-icon"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
             <div class="feat-text">
               <h4>Training Video Library</h4>
               <p>Full access to technique breakdowns, swing mechanics, and strength protocols.</p>
             </div>
           </div>
           <div class="feat">
-            <div class="feat-icon">📥</div>
+            <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
             <div class="feat-text">
               <h4>Digital Downloads</h4>
               <p>All your purchased guides and programs — available on-demand, any device.</p>
             </div>
           </div>
           <div class="feat">
-            <div class="feat-icon">❓</div>
+            <div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
             <div class="feat-text">
               <h4>Q&amp;A Replays</h4>
               <p>Never miss a live session — all Q&amp;As are saved and searchable in your portal.</p>
             </div>
           </div>
           <div class="feat">
-            <div class="feat-icon">🏷️</div>
+            <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
             <div class="feat-text">
               <h4>Your Marucci &amp; Victus Discount</h4>
               <p>Manage and access your lifetime 25% gear discount code from your account.</p>
@@ -878,19 +899,25 @@
       <p class="section-desc fade-up">Surround yourself with serious players putting in the work. Accountability, community, and knowledge — all under one roof.</p>
       <div class="community-grid">
         <div class="comm-card fade-up">
-          <div class="icon">📱</div>
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </div>
           <h4>Instagram Community</h4>
           <p>40K+ athletes following along. Daily tips, technique videos, client wins, and behind-the-scenes content from Joseph.</p>
           <a href="https://www.instagram.com/behind.the.seams.baseball/" target="_blank" class="btn-outline">Follow on Instagram</a>
         </div>
         <div class="comm-card fade-up" style="transition-delay:0.1s">
-          <div class="icon">💬</div>
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
           <h4>Members Community</h4>
           <p>Exclusive group for members — ask questions, share wins, get feedback, and connect with hitters who are on the same mission.</p>
           <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-outline">Join the Community</a>
         </div>
         <div class="comm-card fade-up" style="transition-delay:0.2s">
-          <div class="icon">🏆</div>
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
           <h4>Client Results</h4>
           <p>Real athletes, real numbers. Follow the recruiting journey and performance gains of players Joseph has coached through his programs.</p>
           <a href="https://www.instagram.com/behind.the.seams.baseball/" target="_blank" class="btn-outline">See Results</a>
@@ -910,7 +937,7 @@
           <div class="stars">★★★★★</div>
           <p class="testi-text">"After two months of Joseph's programming, my exit velo jumped from 87 to 94 mph. The approach is different from anything I've tried — actually grounded in science."</p>
           <div class="testi-author">
-            <div class="testi-avatar">⚾</div>
+            <div class="testi-avatar">TM</div>
             <div>
               <div class="testi-name">Tyler M.</div>
               <div class="testi-role">High School Senior · OF</div>
@@ -921,7 +948,7 @@
           <div class="stars">★★★★★</div>
           <p class="testi-text">"The Full-Year Performance System is worth every penny. Clear, periodized, and you can tell it was built by someone who actually played the game at a high level."</p>
           <div class="testi-author">
-            <div class="testi-avatar">⚾</div>
+            <div class="testi-avatar">MD</div>
             <div>
               <div class="testi-name">Marcus D.</div>
               <div class="testi-role">JUCO Player · 2B</div>
@@ -932,7 +959,7 @@
           <div class="stars">★★★★★</div>
           <p class="testi-text">"The 1:1 coaching was a game changer for my son. He improved his launch angle and gained real confidence at the plate. The Marucci discount was a great bonus too!"</p>
           <div class="testi-author">
-            <div class="testi-avatar">⚾</div>
+            <div class="testi-avatar">DS</div>
             <div>
               <div class="testi-name">Daniel S.</div>
               <div class="testi-role">Travel Ball Parent · 14U</div>
@@ -946,25 +973,19 @@
   <!-- ═══════ INSTAGRAM ═══════ -->
   <section id="social">
     <div class="container">
-      <div class="social-head">
-        <div>
-          <div class="section-label fade-up">Instagram</div>
-          <h2 class="section-title fade-up" style="font-size:clamp(2rem,5vw,3.5rem)">FOLLOW THE <span class="accent">JOURNEY</span></h2>
-        </div>
-        <a href="https://www.instagram.com/behind.the.seams.baseball/" target="_blank" class="btn-secondary fade-up" style="align-self:flex-end">@behind.the.seams.baseball</a>
-      </div>
-      <div class="ig-grid fade-up">
-        <div class="ig-tile"><div class="ig-tile-inner"><div class="ig-em">⚾</div><span>Technique Tip</span></div></div>
-        <div class="ig-tile"><div class="ig-tile-inner"><div class="ig-em">🏋️</div><span>Training Reel</span></div></div>
-        <div class="ig-tile"><div class="ig-tile-inner"><div class="ig-em">📊</div><span>Exit Velo Data</span></div></div>
-        <div class="ig-tile"><div class="ig-tile-inner"><div class="ig-em">🎯</div><span>Client Win</span></div></div>
-        <div class="ig-tile"><div class="ig-tile-inner"><div class="ig-em">💪</div><span>Power Training</span></div></div>
-        <div class="ig-tile"><div class="ig-tile-inner"><div class="ig-em">📋</div><span>Program Drop</span></div></div>
-        <div class="ig-tile"><div class="ig-tile-inner"><div class="ig-em">🎬</div><span>In-Season Tips</span></div></div>
-        <div class="ig-tile"><div class="ig-tile-inner"><div class="ig-em">🏆</div><span>Success Story</span></div></div>
-      </div>
-      <div class="ig-cta fade-up">
-        <a href="https://www.instagram.com/behind.the.seams.baseball/" target="_blank" class="btn-ig">📸 Follow on Instagram</a>
+      <div class="ig-feature fade-up">
+        <div class="section-label">Instagram</div>
+        <h2 class="section-title" style="font-size:clamp(2rem,5vw,3.5rem)">FOLLOW THE <span class="accent">JOURNEY</span></h2>
+        <div class="divider" style="margin:0.75rem auto 1.5rem"></div>
+        <p class="section-desc" style="margin:0 auto 0.5rem">Daily training content, technique tips, client results, and behind-the-scenes from Joseph.</p>
+        <div class="ig-follower-count">40K+</div>
+        <div class="ig-follower-label">Athletes Following</div>
+        <a href="https://www.instagram.com/behind.the.seams.baseball/" target="_blank" class="ig-handle-block">
+          <span class="ig-dot"></span>
+          @behind.the.seams.baseball
+        </a>
+        <br/>
+        <a href="https://www.instagram.com/behind.the.seams.baseball/" target="_blank" class="btn-ig">Follow on Instagram</a>
       </div>
     </div>
   </section>
@@ -978,8 +999,12 @@
           <div class="f-logo-bottom">Baseball</div>
           <p>Helping hitters increase Exit Velocity, Power &amp; Consistency. Built by a player, for players.</p>
           <div class="f-socials">
-            <a href="https://www.instagram.com/behind.the.seams.baseball/" target="_blank" class="f-social" title="Instagram">📸</a>
-            <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="f-social" title="Store">🛒</a>
+            <a href="https://www.instagram.com/behind.the.seams.baseball/" target="_blank" class="f-social" title="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="f-social" title="Store">
+              <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            </a>
           </div>
         </div>
         <div class="footer-col">
