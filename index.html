@@ -1,966 +1,1113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Behind the Seams Baseball | Helping Hitters Hit Harder</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    /* ââ Reset & Base ââ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --red:        #CC2200;
-      --red-light:  #e63300;
-      --red-dark:   #991a00;
-      --black:      #111111;
-      --bg:         #ffffff;
-      --bg-alt:     #f7f7f7;
-      --bg-card:    #ffffff;
-      --border:     #e5e5e5;
-      --text:       #111111;
-      --text-muted: #666666;
-      --text-light: #999999;
-      --white:      #ffffff;
+      --bg:        #0f1623;
+      --surface:   #16202f;
+      --surface-2: #1e2d42;
+      --border:    #2a3d57;
+      --text:      #dde7f5;
+      --muted:     #6b82a0;
+      --red:       #dc2626;
+      --red-h:     #b91c1c;
+      --nav-h:     68px;
     }
-    html { scroll-behavior: smooth; }
-    body {
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
       font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; display: block; }
-
-    /* ââ Utility ââ */
-    .accent { color: var(--red); }
-    .display {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
     }
 
-    /* ââ Nav ââ */
+    /* ââ NAV ââââââââââââââââââââââââââââââââ */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 1000;
+      height: var(--nav-h);
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.9rem 2.5rem;
-      background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-      transition: border-color 0.3s, box-shadow 0.3s;
+      padding: 0 40px;
+      z-index: 100;
     }
-    .nav-logo {
-      display: flex;
-      flex-direction: column;
-      line-height: 1;
+
+    .nav-logo img {
+      height: 40px;
+      object-fit: contain;
     }
-    .nav-logo .top {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900;
-      font-size: 1.1rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--black);
-    }
-    .nav-logo .bottom {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900;
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--red);
-    }
+
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 4px;
       list-style: none;
       align-items: center;
     }
-    .nav-links a {
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--black); }
-    .nav-cta {
-      background: var(--red) !important;
-      color: var(--white) !important;
-      padding: 0.5rem 1.25rem !important;
-      border-radius: 4px !important;
-      transition: background 0.2s !important;
-    }
-    .nav-cta:hover { background: var(--red-light) !important; }
-    .nav-hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--black); }
 
-    /* ââ Hero ââ */
-    #hero {
-      min-height: 100vh;
+    .nav-links button {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-links button:hover { color: var(--text); background: var(--surface-2); }
+    .nav-links button.active { color: var(--red); background: rgba(220,38,38,0.08); }
+
+    .nav-shop {
+      background: var(--red) !important;
+      color: #fff !important;
+      border-radius: 4px;
+      margin-left: 8px;
+    }
+    .nav-shop:hover { background: var(--red-h) !important; }
+
+    /* ââ SECTIONS WRAPPER âââââââââââââââââââ */
+    .sections {
+      position: fixed;
+      top: var(--nav-h);
+      left: 0; right: 0; bottom: 0;
+      overflow: hidden;
+    }
+
+    .section {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .section.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* ââ HOME âââââââââââââââââââââââââââââââ */
+    #home {
+      display: grid;
+      grid-template-columns: 55% 45%;
+      height: 100%;
+    }
+
+    .home-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 52px 56px;
+      gap: 28px;
+    }
+
+    .eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--red);
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      padding: 8rem 1.5rem 5rem;
-      background: #fff;
+      gap: 12px;
     }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 65% 50% at 50% 40%, rgba(204,34,0,0.05) 0%, transparent 65%);
-    }
-    .hero-grid-lines {
-      position: absolute; inset: 0; pointer-events: none;
-      background-image:
-        repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 90px),
-        repeating-linear-gradient(0deg,  rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 90px);
-    }
-    .hero-content { position: relative; z-index: 2; max-width: 900px; }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      background: rgba(204,34,0,0.07);
-      border: 1px solid rgba(204,34,0,0.2);
-      color: var(--red);
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 1.75rem;
-    }
-    .hero-eyebrow::before { content: ""; }
-    .hero-h1 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900;
-      font-size: clamp(4rem, 12vw, 10rem);
-      line-height: 0.85;
-      text-transform: uppercase;
-      letter-spacing: 0.01em;
-      margin-bottom: 1.5rem;
-      color: var(--black);
-    }
-    .hero-sub {
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
-      color: var(--text-muted);
-      max-width: 540px;
-      margin: 0 auto 2.75rem;
-      font-weight: 400;
-      line-height: 1.65;
-    }
-    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--red); color: var(--white);
-      font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.9rem 2rem; border-radius: 4px; border: 2px solid var(--red);
-      cursor: pointer; transition: all 0.2s; display: inline-block;
-    }
-    .btn-primary:hover { background: var(--red-light); border-color: var(--red-light); transform: translateY(-2px); }
-    .btn-secondary {
-      background: transparent; color: var(--black);
-      font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.9rem 2rem; border-radius: 4px; border: 2px solid var(--border);
-      cursor: pointer; transition: all 0.2s; display: inline-block;
-    }
-    .btn-secondary:hover { border-color: var(--black); transform: translateY(-2px); }
-    .hero-stats {
-      display: flex; gap: 0; justify-content: center;
-      margin-top: 5rem;
-      border: 1px solid var(--border);
-      border-radius: 10px; overflow: hidden; flex-wrap: wrap;
-    }
-    .stat {
-      flex: 1; min-width: 120px; padding: 1.5rem 1rem; text-align: center;
-      border-right: 1px solid var(--border);
-      background: var(--bg-alt);
-    }
-    .stat:last-child { border-right: none; }
-    .stat-num {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: 2.4rem; color: var(--red); line-height: 1;
-    }
-    .stat-label {
-      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--text-light); margin-top: 0.3rem;
-    }
-
-    /* ââ Sections ââ */
-    section { padding: 2.75rem 1.5rem; }
-    .container { max-width: 1100px; margin: 0 auto; }
-    .section-label {
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--red); margin-bottom: 0.75rem;
-    }
-    .section-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: clamp(2.5rem, 6vw, 4.5rem);
-      line-height: 0.95; text-transform: uppercase; letter-spacing: 0.02em;
-      margin-bottom: 1rem; color: var(--black);
-    }
-    .section-desc { color: var(--text-muted); font-size: 0.95rem; max-width: 520px; margin-bottom: 3rem; line-height: 1.7; }
-    .divider { width: 40px; height: 3px; background: var(--red); margin: 0.75rem 0 1.75rem; }
-
-    /* ââ About ââ */
-    #about { background: var(--bg-alt); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 5rem; align-items: center; }
-    .about-photo-wrap { position: relative; }
-    .about-photo {
-      width: 100%; aspect-ratio: 3/4;
-      border-radius: 8px; overflow: hidden;
-      border: 1px solid var(--border);
-    }
-    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
-    .about-photo-placeholder {
-      width: 100%; height: 100%;
-      background: #ececec;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 0.75rem; color: var(--text-light); font-size: 0.8rem; text-align: center; padding: 1rem;
-    }
-    .about-photo-placeholder .icon { font-size: 3.5rem; }
-    .about-chip {
-      position: absolute; bottom: -1.25rem; right: -1.25rem;
-      background: var(--red); color: var(--white);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: 1rem; letter-spacing: 0.06em;
-      text-transform: uppercase; padding: 1rem 1.5rem;
-      border-radius: 6px; line-height: 1.3; text-align: center;
-    }
-    .creds { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 2rem; }
-    .cred {
-      display: flex; align-items: center; gap: 0.75rem;
-      color: var(--text-muted); font-size: 0.9rem;
-    }
-    .cred-dot {
-      width: 8px; height: 8px; background: var(--red);
-      border-radius: 50%; flex-shrink: 0;
-    }
-
-    /* ââ Shop ââ */
-    #shop { background: var(--bg); }
-    .shop-category { margin-bottom: 3.5rem; }
-    .cat-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: 1.5rem; text-transform: uppercase;
-      letter-spacing: 0.06em; border-left: 4px solid var(--red);
-      padding-left: 0.75rem; margin-bottom: 0.75rem; color: var(--black);
-    }
-    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.25rem; }
-    .product-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 10px; overflow: hidden;
-      display: flex; flex-direction: column;
-      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-    }
-    .product-card:hover { transform: translateY(-4px); border-color: rgba(204,34,0,0.3); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
-    .product-img {
-      width: 100%; aspect-ratio: 16/9;
-      background: #f0f0f0;
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-    }
-    .product-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
-    .prod-img-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: 4rem; letter-spacing: 0.04em;
-      text-transform: uppercase; color: rgba(255,255,255,0.07);
-      user-select: none; pointer-events: none; text-align: center; line-height: 1;
-    }
-    .prod-tag {
-      position: absolute; top: 0.65rem; left: 0.65rem;
-      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: 3px;
-      z-index: 1;
-    }
-    .tag-red    { background: var(--red); color: #fff; }
-    .tag-white  { background: #fff; color: #000; }
-    .tag-sale   { background: var(--black); color: var(--red); border: 1px solid var(--red); }
-    .product-body { padding: 1.4rem; flex: 1; display: flex; flex-direction: column; }
-    .product-name {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: 1.35rem; text-transform: uppercase;
-      letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 0.5rem; color: var(--black);
-    }
-    .product-desc { color: var(--text-muted); font-size: 0.82rem; flex: 1; margin-bottom: 1.25rem; line-height: 1.6; }
-    .product-footer { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
-    .price-wrap { display: flex; align-items: baseline; gap: 0.5rem; }
-    .price-now {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: 1.7rem; color: var(--black); line-height: 1;
-    }
-    .price-was { font-size: 0.8rem; color: var(--text-light); text-decoration: line-through; }
-    .btn-buy {
-      background: var(--red); color: #fff;
-      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.09em;
-      text-transform: uppercase; padding: 0.55rem 1.1rem;
-      border-radius: 4px; border: none; cursor: pointer;
-      transition: background 0.2s; white-space: nowrap;
-    }
-    .btn-buy:hover { background: var(--red-light); }
-
-    /* ââ Perks ââ */
-    #perks { background: var(--black); }
-    .perks-card {
-      background: linear-gradient(135deg, rgba(204,34,0,0.08) 0%, rgba(204,34,0,0.02) 100%);
-      border: 1px solid rgba(204,34,0,0.2);
-      border-radius: 14px; padding: 1.75rem;
-      display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;
-    }
-    .perks-number {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: clamp(4rem, 10vw, 8rem);
-      color: var(--red); line-height: 1; flex-shrink: 0;
-    }
-    .perks-body { flex: 1; min-width: 220px; }
-    .perks-body h3 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: clamp(2rem, 5vw, 3rem);
-      text-transform: uppercase; line-height: 1; margin-bottom: 0.75rem; color: #fff;
-    }
-    .perks-body p { color: rgba(255,255,255,0.65); font-size: 0.9rem; max-width: 480px; margin-bottom: 1.25rem; line-height: 1.65; }
-    .brand-tags { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .brand-tag {
-      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 100px; padding: 0.35rem 1rem;
-      font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em; color: #fff;
-    }
-
-    /* ââ Members ââ */
-    #members { background: var(--bg-alt); }
-    .members-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 2.5rem; align-items: start; }
-    .features-list { display: flex; flex-direction: column; gap: 1.4rem; }
-    .feat {
-      display: flex; gap: 1rem; align-items: flex-start;
-    }
-    .feat-icon {
-      width: 42px; height: 42px; flex-shrink: 0;
-      background: rgba(204,34,0,0.08); border: 1px solid rgba(204,34,0,0.15);
-      border-radius: 8px; display: flex; align-items: center; justify-content: center;
-    }
-    .feat-icon svg { width: 18px; height: 18px; stroke: var(--red); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
-    .feat-text h4 { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.25rem; color: var(--black); }
-    .feat-text p  { color: var(--text-muted); font-size: 0.82rem; line-height: 1.55; }
-    .login-card {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 12px; padding: 2.5rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    }
-    .login-card h3 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: 2rem; text-transform: uppercase;
-      margin-bottom: 0.4rem; color: var(--black);
-    }
-    .login-card p { color: var(--text-muted); font-size: 0.82rem; margin-bottom: 2rem; }
-    .form-group { margin-bottom: 1.2rem; }
-    .form-group label {
-      display: block; font-size: 0.7rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--text-muted); margin-bottom: 0.45rem;
-    }
-    .form-group input {
-      width: 100%; background: var(--bg-alt);
-      border: 1px solid var(--border); border-radius: 6px;
-      padding: 0.75rem 1rem; color: var(--black); font-size: 0.9rem;
-      font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s;
-    }
-    .form-group input:focus { border-color: var(--red); }
-    .form-group input::placeholder { color: #bbb; }
-    .btn-login {
-      width: 100%; background: var(--red); color: #fff;
-      font-weight: 700; font-size: 0.88rem; letter-spacing: 0.1em;
-      text-transform: uppercase; padding: 0.9rem; border-radius: 6px;
-      border: none; cursor: pointer; transition: background 0.2s; margin-bottom: 1rem;
-    }
-    .btn-login:hover { background: var(--red-light); }
-    .login-foot { display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted); }
-    .login-foot a { color: var(--red); }
-    .login-foot a:hover { text-decoration: underline; }
-
-    /* ââ Community ââ */
-    #community { background: var(--bg); }
-    .community-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 1.25rem; margin-top: 3rem; }
-    .comm-card {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 10px; padding: 2rem; text-align: center;
-      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-    }
-    .comm-card:hover { border-color: rgba(204,34,0,0.25); transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,0.07); }
-    .comm-card .icon {
-      width: 48px; height: 48px; margin: 0 auto 1rem;
-      background: rgba(204,34,0,0.07); border: 1px solid rgba(204,34,0,0.15);
-      border-radius: 8px; display: flex; align-items: center; justify-content: center;
-    }
-    .comm-card .icon svg { width: 20px; height: 20px; stroke: var(--red); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
-    .comm-card h4 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: 1.35rem; text-transform: uppercase;
-      margin-bottom: 0.5rem; color: var(--black);
-    }
-    .comm-card p { color: var(--text-muted); font-size: 0.83rem; margin-bottom: 1.5rem; line-height: 1.6; }
-    .btn-outline {
-      display: inline-block; background: transparent;
-      color: var(--red); font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.55rem 1.2rem; border-radius: 4px;
-      border: 1.5px solid var(--red); transition: all 0.2s;
-    }
-    .btn-outline:hover { background: var(--red); color: #fff; }
-
-    /* ââ Testimonials ââ */
-    #testimonials { background: var(--bg-alt); }
-    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.25rem; }
-    .testi-card {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 10px; padding: 2rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-    }
-    .stars { color: var(--red); letter-spacing: 2px; margin-bottom: 1rem; font-size: 0.9rem; }
-    .testi-text { color: var(--text-muted); font-size: 0.88rem; line-height: 1.75; font-style: italic; margin-bottom: 1.5rem; }
-    .testi-author { display: flex; align-items: center; gap: 0.75rem; }
-    .testi-avatar {
-      width: 38px; height: 38px; border-radius: 50%;
-      background: rgba(204,34,0,0.08); border: 2px solid rgba(204,34,0,0.2);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: 0.85rem; letter-spacing: 0.04em;
-      color: var(--red); flex-shrink: 0;
-    }
-    .testi-name { font-weight: 700; font-size: 0.85rem; color: var(--black); }
-    .testi-role { font-size: 0.73rem; color: var(--text-light); }
-
-    /* ââ Instagram ââ */
-    #social { background: var(--bg); }
-    .ig-feature {
-      max-width: 680px; margin: 0 auto; text-align: center; padding: 2rem 0;
-    }
-    .ig-handle-block {
-      display: inline-flex; align-items: center; gap: 0.75rem;
-      border: 1px solid var(--border); border-radius: 100px;
-      padding: 0.6rem 1.5rem; margin: 2rem 0;
-      font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em;
-      color: var(--text-muted); transition: border-color 0.2s, color 0.2s;
-    }
-    .ig-handle-block:hover { border-color: #cc2366; color: #cc2366; }
-    .ig-handle-block .ig-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: linear-gradient(135deg,#f09433,#cc2366);
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 2px;
+      background: var(--red);
       flex-shrink: 0;
     }
-    .ig-follower-count {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: 3rem; color: var(--black); line-height: 1;
-    }
-    .ig-follower-label {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em;
-      text-transform: uppercase; color: var(--text-light); margin-bottom: 2rem;
-    }
-    .btn-ig {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
-      color: #fff; font-weight: 700; font-size: 0.88rem;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 0.85rem 2rem; border-radius: 6px;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-    .btn-ig:hover { opacity: 0.85; transform: translateY(-2px); }
 
-    /* ââ Footer ââ */
-    footer {
-      background: var(--black);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 2.25rem 1.5rem 1.25rem;
-    }
-    .footer-inner { max-width: 1100px; margin: 0 auto; }
-    .footer-top {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem; margin-bottom: 1.75rem;
-    }
-    .footer-brand .f-logo-top {
+    .home-headline {
       font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: 1.5rem;
-      text-transform: uppercase; color: #fff;
+      font-size: clamp(4.5rem, 7.5vw, 8rem);
+      font-weight: 900;
+      line-height: 0.9;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: var(--text);
     }
-    .footer-brand .f-logo-bottom {
+    .home-headline em {
+      font-style: italic;
+      color: var(--red);
+    }
+
+    .home-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 400px;
+    }
+
+    .home-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: #fff;
       font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: 0.85rem;
-      text-transform: uppercase; letter-spacing: 0.16em; color: var(--red);
-      margin-bottom: 0.75rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border: 2px solid var(--red);
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s, border-color 0.2s;
     }
-    .footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.83rem; margin-bottom: 1.5rem; line-height: 1.65; }
-    .f-socials { display: flex; gap: 0.6rem; }
-    .f-social {
-      width: 34px; height: 34px; background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1); border-radius: 5px;
-      display: flex; align-items: center; justify-content: center;
-      transition: border-color 0.2s;
-    }
-    .f-social svg { width: 15px; height: 15px; stroke: rgba(255,255,255,0.6); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
-    .f-social:hover svg { stroke: rgba(255,255,255,0.95); }
-    .f-social:hover { border-color: var(--red); }
-    .footer-col h5 {
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 1rem;
-    }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .footer-col ul li a {
-      color: rgba(255,255,255,0.5); font-size: 0.85rem; transition: color 0.2s;
-    }
-    .footer-col ul li a:hover { color: #fff; }
-    .footer-bottom {
-      padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.06);
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 0.75rem;
-    }
-    .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+    .btn-primary:hover { background: var(--red-h); border-color: var(--red-h); }
 
-    /* ââ Scroll fade ââ */
-    .fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .fade-up.visible { opacity: 1; transform: none; }
-
-    /* ââ Responsive ââ */
-    @media (max-width: 900px) {
-      nav { padding: 1rem 1.25rem; }
-      .nav-links { display: none; }
-      .nav-links.open {
-        display: flex; flex-direction: column;
-        position: absolute; top: 100%; left: 0; right: 0;
-        background: rgba(255,255,255,0.98);
-        padding: 1.5rem; border-top: 1px solid var(--border); gap: 1.5rem;
-      }
-      .nav-hamburger { display: flex; }
-      .about-grid, .members-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-      .about-chip { right: 0; }
-      .ig-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
-      .perks-card { flex-direction: column; text-align: center; }
-      .brand-tags { justify-content: center; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color 0.2s, color 0.2s;
     }
-    @media (max-width: 580px) {
-      section { padding: 4rem 1.1rem; }
-      .hero-stats { border-radius: 0; }
-      .footer-top { grid-template-columns: 1fr; }
-      .social-head { flex-direction: column; align-items: flex-start; }
+    .btn-ghost:hover { border-color: var(--text); }
+
+    .home-stats {
+      display: grid;
+      grid-template-columns: repeat(4, auto);
+      justify-content: flex-start;
+      gap: 0;
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+    }
+
+    .stat {
+      padding-right: 28px;
+    }
+    .stat + .stat {
+      padding-left: 28px;
+      border-left: 1px solid var(--border);
+    }
+    .stat-val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1;
+    }
+    .stat-lbl {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    .home-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .home-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .home-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--bg) 0%, transparent 35%);
+      z-index: 1;
+    }
+    .home-right::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 35%;
+      background: linear-gradient(to top, var(--bg), transparent);
+      z-index: 1;
+    }
+
+    /* ââ ABOUT ââââââââââââââââââââââââââââââ */
+    #about {
+      display: grid;
+      grid-template-columns: 42% 1fr;
+      height: 100%;
+    }
+
+    .about-photo {
+      position: relative;
+      overflow: hidden;
+    }
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .about-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, transparent 55%, var(--bg) 100%);
+    }
+
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 52px 64px 52px 44px;
+      gap: 24px;
+    }
+
+    .sec-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sec-label::before {
+      content: '';
+      width: 24px; height: 2px;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .sec-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.8rem, 4.5vw, 4.5rem);
+      font-weight: 900;
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .about-bio {
+      font-size: 0.95rem;
+      line-height: 1.72;
+      color: var(--muted);
+      max-width: 500px;
+    }
+
+    .creds {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .cred {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 7px 14px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    /* ââ PROGRAMS âââââââââââââââââââââââââââ */
+    #programs {
+      display: flex;
+      flex-direction: column;
+      padding: 32px 52px 24px;
+      height: 100%;
+    }
+
+    .prog-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+    .prog-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1;
+      color: var(--text);
+    }
+    .prog-note {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .prog-table { flex: 1; }
+
+    .prog-cat {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      padding: 10px 0 7px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .prog-row {
+      display: grid;
+      grid-template-columns: 56px 1fr 72px 90px;
+      align-items: center;
+      gap: 16px;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(42,61,87,0.6);
+      border-radius: 4px;
+      transition: background 0.15s, padding 0.15s;
+    }
+    .prog-row:hover {
+      background: var(--surface);
+      padding: 11px 12px;
+      margin: 0 -12px;
+      border-color: transparent;
+    }
+
+    .prog-code {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--red);
+      background: rgba(220,38,38,0.1);
+      border: 1px solid rgba(220,38,38,0.2);
+      padding: 3px 6px;
+      border-radius: 3px;
+      text-align: center;
+    }
+
+    .prog-name {
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .prog-desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+
+    .prog-price {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .prog-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 3px;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.18s;
+      white-space: nowrap;
+    }
+    .prog-btn:hover, .prog-btn.hot {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+
+    /* ââ PERKS ââââââââââââââââââââââââââââââ */
+    #perks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 100%;
+    }
+
+    .perks-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 52px 56px;
+      gap: 22px;
+      border-right: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .big-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(4rem, 8vw, 8rem);
+      font-weight: 900;
+      line-height: 0.88;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .big-num span { color: var(--red); }
+
+    .perks-brands {
+      display: flex;
+      gap: 10px;
+    }
+    .brand-tag {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 9px 18px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .perks-body {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 380px;
+    }
+
+    .perks-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px 52px;
+      gap: 14px;
+    }
+
+    .reviews-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 4px;
+    }
+
+    .testimonial {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 20px;
+    }
+    .stars { color: #f59e0b; font-size: 0.78rem; margin-bottom: 8px; letter-spacing: 2px; }
+    .t-text {
+      font-size: 0.84rem;
+      line-height: 1.6;
+      color: var(--muted);
+      font-style: italic;
+    }
+    .t-author {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-top: 10px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ââ CONNECT ââââââââââââââââââââââââââââ */
+    #connect {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 100%;
+    }
+
+    .connect-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 52px 56px;
+      gap: 22px;
+      border-right: 1px solid var(--border);
+    }
+
+    .ig-handle {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+
+    .connect-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.95;
+      color: var(--text);
+    }
+    .connect-headline em { color: var(--red); font-style: normal; }
+
+    .connect-sub {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 360px;
+    }
+
+    .follower-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .follower-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1;
+    }
+    .follower-lbl {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .connect-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 52px 56px;
+      gap: 20px;
+    }
+
+    .footer-brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 340px;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 24px;
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+    }
+    .f-link {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .f-link:hover { color: var(--text); }
+
+    .footer-copy {
+      font-size: 0.7rem;
+      color: rgba(107,130,160,0.6);
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
     }
   </style>
 </head>
 <body>
 
-  <!-- âââââââ NAV âââââââ -->
-  <nav id="navbar">
-    <a href="#hero" class="nav-logo">
-      <img src="images/logo.png" alt="Behind the Seams Baseball" style="height:40px;width:auto;display:block;" />
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#about">About</a></li>
-      <li><a href="#shop">Programs</a></li>
-      <li><a href="#perks">Perks</a></li>
-      <li><a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="nav-cta">Shop Now</a></li>
-    </ul>
-    <div class="nav-hamburger" id="hamburger" onclick="toggleNav()">
-      <span></span><span></span><span></span>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <img src="images/logo.png" alt="Behind the Seams Baseball">
     </div>
+    <ul class="nav-links">
+      <li><button data-sec="home"     class="active"  onclick="show('home',this)">Home</button></li>
+      <li><button data-sec="about"               onclick="show('about',this)">About</button></li>
+      <li><button data-sec="programs"            onclick="show('programs',this)">Programs</button></li>
+      <li><button data-sec="perks"               onclick="show('perks',this)">Perks</button></li>
+      <li><button data-sec="connect"             onclick="show('connect',this)">Connect</button></li>
+      <li><button class="nav-shop" onclick="window.open('https://stan.store/behindtheseamsbaseball','_blank')">Shop Now</button></li>
+    </ul>
   </nav>
 
-  <!-- âââââââ HERO âââââââ -->
-  <section id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-grid-lines"></div>
-    <div class="hero-content">
-      <div class="hero-eyebrow">Performance Training &nbsp;Â·&nbsp; Digital Programs &nbsp;Â·&nbsp; 1-on-1 Coaching</div>
-      <h1 class="hero-h1">BEHIND<br/><span class="accent">THE SEAMS</span><br/>BASEBALL</h1>
-      <p class="hero-sub">Science-backed hitting programs from a former D2 athlete. Exit Velocity, Power &amp; Consistency.</p>
-      <div class="hero-btns">
-        <a href="#shop" class="btn-primary">Shop Programs</a>
-        <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-secondary">Member Login</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <div class="stat-num">40K+</div>
-          <div class="stat-label">Community</div>
+  <div class="sections">
+
+    <!-- ââ HOME ââ -->
+    <section class="section active" id="home">
+      <div class="home-left">
+        <span class="eyebrow">Behind the Seams Baseball</span>
+        <h1 class="home-headline">
+          Helping<br>Hitters<br><em>Hit Harder.</em>
+        </h1>
+        <p class="home-sub">Science-backed hitting programs from a former D2 athlete. Exit Velocity, Power &amp; Consistency â built for players who take the game seriously.</p>
+        <div class="home-ctas">
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-primary">Shop Programs &rarr;</a>
+          <button class="btn-ghost" onclick="show('about', document.querySelector('[data-sec=about]'))">About Joseph</button>
         </div>
-        <div class="stat">
-          <div class="stat-num">D2</div>
-          <div class="stat-label">Former Player</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">25%</div>
-          <div class="stat-label">Marucci &amp; Victus</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">5.0â</div>
-          <div class="stat-label">Avg Rating</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- âââââââ ABOUT âââââââ -->
-  <section id="about">
-    <div class="container">
-      <div class="about-grid">
-
-        <div class="about-photo-wrap fade-up">
-          <div class="about-photo">
-            <img src="images/joseph.jpg" alt="Joseph Kummick - Behind the Seams Baseball" style="width:100%;height:100%;object-fit:cover;" />
+        <div class="home-stats">
+          <div class="stat">
+            <div class="stat-val">40K+</div>
+            <div class="stat-lbl">Athletes</div>
           </div>
-          <div class="about-chip">JOSEPH<br/>KUMMICK</div>
-        </div>
-
-        <div class="fade-up" style="transition-delay:0.1s">
-          <div class="section-label">Behind the Coach</div>
-          <h2 class="section-title">TURNING HITTERS<br/>INTO <span class="accent">ATHLETES</span></h2>
-          <div class="divider"></div>
-          <p style="color:var(--text);font-size:0.95rem;line-height:1.75;margin-bottom:1rem">
-            I'm Joseph Kummick â a Sports Performance graduate and former Division II baseball player. I built Behind the Seams Baseball to give serious players access to the same elite training principles used at the highest levels of the game.
-          </p>
-          <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.75;margin-bottom:2rem">
-            Whether you're chasing a college roster spot, pushing for the next level, or just want to see measurable gains at the plate â this is where your development happens.
-          </p>
-          <div class="creds">
-            <div class="cred"><div class="cred-dot"></div> B.S. in Sports Performance</div>
-            <div class="cred"><div class="cred-dot"></div> Former Division II Athlete</div>
-            <div class="cred"><div class="cred-dot"></div> Specializes in Exit Velocity &amp; Power Development</div>
-            <div class="cred"><div class="cred-dot"></div> 40,000+ athletes following the journey</div>
-            <div class="cred"><div class="cred-dot"></div> 1:1 Coaching, Digital Programs &amp; Nutrition Guides</div>
+          <div class="stat">
+            <div class="stat-val">D2</div>
+            <div class="stat-lbl">Former Athlete</div>
           </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- âââââââ SHOP âââââââ -->
-  <section id="shop">
-    <div class="container">
-      <div class="section-label fade-up">Training Programs &amp; Guides</div>
-      <h2 class="section-title fade-up">INVEST IN YOUR <span class="accent">DEVELOPMENT</span></h2>
-      <div class="divider fade-up"></div>
-      <p class="section-desc fade-up">Every program is built around real sports science. All purchases come with a <strong style="color:var(--red)">lifetime 25% discount</strong> on Marucci &amp; Victus gear.</p>
-
-      <!-- Training Programs -->
-      <div class="shop-category fade-up">
-        <div class="cat-label">Training Programs</div>
-        <div class="products-grid">
-
-          <div class="product-card">
-            <div class="product-img" style="background:linear-gradient(135deg,#1a0808,#2a0a0a)">
-              <div class="prod-img-label">BTS</div>
-              <div class="prod-tag tag-white">Flagship</div>
-            </div>
-            <div class="product-body">
-              <div class="product-name">The Full-Year Baseball Performance System</div>
-              <p class="product-desc">The complete annual training blueprint built around baseball's full performance cycle â off-season through playoffs. Transform your game in 365 days.</p>
-              <div class="product-footer">
-                <div class="price-wrap"><div class="price-now">$97</div></div>
-                <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-buy">Get Program</a>
-              </div>
-            </div>
+          <div class="stat">
+            <div class="stat-val">5.0â</div>
+            <div class="stat-lbl">Avg Rating</div>
           </div>
-
-          <div class="product-card">
-            <div class="product-img" style="background:linear-gradient(135deg,#080f1a,#0a1528)">
-              <div class="prod-img-label">EV</div>
-              <div class="prod-tag tag-red">Popular</div>
-            </div>
-            <div class="product-body">
-              <div class="product-name">The 100 MPH Exit Velocity Blueprint</div>
-              <p class="product-desc">The complete system for maximizing exit velocity through bat speed, barrel control, and rotational power. Science-backed and game-tested.</p>
-              <div class="product-footer">
-                <div class="price-wrap"><div class="price-now">See Store</div></div>
-                <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-buy">Get Blueprint</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <div class="product-img" style="background:linear-gradient(135deg,#0a1208,#0f1f0f)">
-              <div class="prod-img-label">SPD</div>
-              <div class="prod-tag tag-red">Speed</div>
-            </div>
-            <div class="product-body">
-              <div class="product-name">Speed & Sprint Training Program</div>
-              <p class="product-desc">Purpose-built for baseball athletes. Develop explosive first-step speed, base-running acceleration, and outfield range through sport-specific sprint training.</p>
-              <div class="product-footer">
-                <div class="price-wrap"><div class="price-now">See Store</div></div>
-                <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-buy">Get Program</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <div class="product-img" style="background:linear-gradient(135deg,#0a0a1a,#101028)">
-              <div class="prod-img-label">SB</div>
-              <div class="prod-tag tag-sale">Recovery</div>
-            </div>
-            <div class="product-body">
-              <div class="product-name">The Slump Buster System</div>
-              <p class="product-desc">Break out of any slump fast. A step-by-step mental and mechanical reset system designed to get your swing and confidence back on track immediately.</p>
-              <div class="product-footer">
-                <div class="price-wrap"><div class="price-now">See Store</div></div>
-                <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-buy">Get System</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <div class="product-img" style="background:linear-gradient(135deg,#0f0a08,#1a1008)">
-              <div class="prod-img-label">ARM</div>
-              <div class="prod-tag tag-red">Arm Health</div>
-            </div>
-            <div class="product-body">
-              <div class="product-name">Arm Care Program</div>
-              <p class="product-desc">Protect your arm and throw harder. A complete arm care protocol for baseball players covering strength, mobility, and injury prevention from warm-up to cool-down.</p>
-              <div class="product-footer">
-                <div class="price-wrap"><div class="price-now">See Store</div></div>
-                <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-buy">Get Program</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <div class="product-img" style="background:linear-gradient(135deg,#0a1208,#102014)">
-              <div class="prod-img-label">YSS</div>
-              <div class="prod-tag tag-red" style="background:#FFD700;color:#000">â 5.0</div>
-            </div>
-            <div class="product-body">
-              <div class="product-name">Young Slugger System</div>
-              <p class="product-desc">Building Strength, Skill & Confidence for 8â12 Year Olds. 4-week, at-home friendly program â no weights required. Created by Joseph Kummick.</p>
-              <div class="product-footer">
-                <div class="price-wrap"><div class="price-now">$19.99</div></div>
-                <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-buy">Get System</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card" style="border-color:rgba(204,34,0,0.25)">
-            <div class="product-img" style="background:linear-gradient(135deg,#1a0808,#2a1010)">
-              <div class="prod-img-label">1:1</div>
-              <div class="prod-tag tag-sale">Premium</div>
-            </div>
-            <div class="product-body">
-              <div class="product-name">Elite Baseball Coaching (Full Access)</div>
-              <p class="product-desc">Full 1:1 coaching access with Joseph. Personalized programming, video analysis, and weekly check-ins entirely tailored to your development goals.</p>
-              <div class="product-footer">
-                <div class="price-wrap"><div class="price-now">$500</div></div>
-                <a href="https://www.instagram.com/behind.the.seams.baseball/" target="_blank" class="btn-buy">DM "TRAIN"</a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Nutrition Guides -->
-      <div class="shop-category fade-up">
-        <div class="cat-label">Nutrition & Performance</div>
-        <div class="products-grid">
-
-          <div class="product-card">
-            <div class="product-img" style="background:linear-gradient(135deg,#0a1008,#0f1f10)">
-              <div class="prod-img-label">GDN</div>
-              <div class="prod-tag tag-red">Game Day</div>
-            </div>
-            <div class="product-body">
-              <div class="product-name">Game Day Nutrition System</div>
-              <p class="product-desc">Fuel like a pro. Everything you need to know about pre-game, in-game, and post-game nutrition to perform at your peak when it matters most.</p>
-              <div class="product-footer">
-                <div class="price-wrap"><div class="price-now">See Store</div></div>
-                <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-buy">Get Guide</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <div class="product-img" style="background:linear-gradient(135deg,#0a0f18,#101828)">
-              <div class="prod-img-label">NUT</div>
-              <div class="prod-tag tag-red">Nutrition</div>
-            </div>
-            <div class="product-body">
-              <div class="product-name">Baseball Performance Nutrition System</div>
-              <p class="product-desc">A complete nutrition blueprint built specifically for baseball athletes â covering macros, meal timing, supplementation, and body composition for peak performance.</p>
-              <div class="product-footer">
-                <div class="price-wrap"><div class="price-now">See Store</div></div>
-                <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-buy">Get System</a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- âââââââ PERKS âââââââ -->
-  <section id="perks">
-    <div class="container">
-      <div class="section-label fade-up">Exclusive Purchase Perk</div>
-      <h2 class="section-title fade-up">GEAR DISCOUNTS <span class="accent">INCLUDED</span></h2>
-      <div class="divider fade-up"></div>
-      <div class="perks-card fade-up">
-        <div class="perks-number">25%</div>
-        <div class="perks-body">
-          <h3>Lifetime Discount on<br/><span class="accent">Marucci &amp; Victus</span></h3>
-          <p>Every purchase at Behind the Seams Baseball unlocks a <strong style="color:var(--white)">lifetime 25% discount</strong> with Marucci and Victus â two of the best bat brands in the game. Save on the gear the pros trust, every single order.</p>
-          <div class="brand-tags">
-            <div class="brand-tag">â¾ Marucci</div>
-            <div class="brand-tag">â¾ Victus</div>
-          </div>
-        </div>
-        <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-primary" style="white-space:nowrap">Unlock Discount</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- âââââââ MEMBERS âââââââ -->
-    <div class="container">
-      <div class="section-label fade-up">What Athletes Say</div>
-      <h2 class="section-title fade-up">REAL RESULTS FROM <span class="accent">REAL PLAYERS</span></h2>
-      <div class="divider fade-up"></div>
-      <div class="testi-grid">
-        <div class="testi-card fade-up">
-          <div class="stars">âââââ</div>
-          <p class="testi-text">"After two months of Joseph's programming, my exit velo jumped from 87 to 94 mph. The approach is different from anything I've tried â actually grounded in science."</p>
-          <div class="testi-author">
-            <div class="testi-avatar">TM</div>
-            <div>
-              <div class="testi-name">Tyler M.</div>
-              <div class="testi-role">High School Senior Â· OF</div>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card fade-up" style="transition-delay:0.1s">
-          <div class="stars">âââââ</div>
-          <p class="testi-text">"The Full-Year Performance System is worth every penny. Clear, periodized, and you can tell it was built by someone who actually played the game at a high level."</p>
-          <div class="testi-author">
-            <div class="testi-avatar">MD</div>
-            <div>
-              <div class="testi-name">Marcus D.</div>
-              <div class="testi-role">JUCO Player Â· 2B</div>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card fade-up" style="transition-delay:0.2s">
-          <div class="stars">âââââ</div>
-          <p class="testi-text">"The 1:1 coaching was a game changer for my son. He improved his launch angle and gained real confidence at the plate. The Marucci discount was a great bonus too!"</p>
-          <div class="testi-author">
-            <div class="testi-avatar">DS</div>
-            <div>
-              <div class="testi-name">Daniel S.</div>
-              <div class="testi-role">Travel Ball Parent Â· 14U</div>
-            </div>
+          <div class="stat">
+            <div class="stat-val">25%</div>
+            <div class="stat-lbl">Gear Discount</div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- âââââââ INSTAGRAM âââââââ -->
-  <section id="social">
-    <div class="container">
-      <div class="ig-feature fade-up">
-        <div class="section-label">Instagram</div>
-        <h2 class="section-title" style="font-size:clamp(2rem,5vw,3.5rem)">FOLLOW THE <span class="accent">JOURNEY</span></h2>
-        <div class="divider" style="margin:0.75rem auto 1.5rem"></div>
-        <p class="section-desc" style="margin:0 auto 0.5rem">Daily training content, technique tips, client results, and behind-the-scenes from Joseph.</p>
-        <div class="ig-follower-count">40K+</div>
-        <div class="ig-follower-label">Athletes Following</div>
-        <a href="https://www.instagram.com/behind.the.seams.baseball/" target="_blank" class="ig-handle-block">
-          <span class="ig-dot"></span>
-          @behind.the.seams.baseball
-        </a>
-        <br/>
-        <a href="https://www.instagram.com/behind.the.seams.baseball/" target="_blank" class="btn-ig">Follow on Instagram</a>
+      <div class="home-right">
+        <img src="images/joseph.jpg" alt="Joseph Kummick â Behind the Seams Baseball">
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- âââââââ FOOTER âââââââ -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="f-logo-top">Behind the Seams</div>
-          <div class="f-logo-bottom">Baseball</div>
-          <p>Helping hitters increase Exit Velocity, Power &amp; Consistency. Built by a player, for players.</p>
-          <div class="f-socials">
-            <a href="https://www.instagram.com/behind.the.seams.baseball/" target="_blank" class="f-social" title="Instagram">
-              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </a>
-            <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="f-social" title="Store">
-              <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-            </a>
+    <!-- ââ ABOUT ââ -->
+    <section class="section" id="about">
+      <div class="about-photo">
+        <img src="images/joseph.jpg" alt="Joseph Kummick">
+      </div>
+      <div class="about-content">
+        <span class="sec-label">Behind the Coach</span>
+        <h2 class="sec-headline">Turning Hitters<br>Into Athletes.</h2>
+        <p class="about-bio">
+          I'm Joseph Kummick â a Sports Performance graduate and former Division II baseball player. I built Behind the Seams Baseball to give serious players access to the same elite training principles used at the highest levels of the game. Whether you're chasing a college roster spot, pushing for the next level, or just want to see measurable gains at the plate â this is where your development happens.
+        </p>
+        <div class="creds">
+          <span class="cred">B.S. Sports Performance</span>
+          <span class="cred">Former D2 Athlete</span>
+          <span class="cred">Exit Velocity Specialist</span>
+          <span class="cred">Power Development</span>
+          <span class="cred">40,000+ Athletes</span>
+          <span class="cred">1:1 Coaching</span>
+        </div>
+        <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-primary" style="align-self:flex-start; margin-top:4px;">Train With Joseph &rarr;</a>
+      </div>
+    </section>
+
+    <!-- ââ PROGRAMS ââ -->
+    <section class="section" id="programs">
+      <div class="prog-header">
+        <h2 class="prog-title">Invest In Your<br>Development.</h2>
+        <p class="prog-note">All purchases include a lifetime 25% discount on Marucci &amp; Victus gear.</p>
+      </div>
+
+      <div class="prog-table">
+        <div class="prog-cat">Training Programs</div>
+
+        <div class="prog-row">
+          <span class="prog-code">FYS</span>
+          <div>
+            <div class="prog-name">Full-Year Baseball Performance System</div>
+            <div class="prog-desc">Complete annual blueprint â off-season through playoffs. 365 days of elite periodized training.</div>
           </div>
+          <span class="prog-price">$97</span>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn hot">Get &rarr;</a>
         </div>
-        <div class="footer-col">
-          <h5>Train</h5>
-          <ul>
-            <li><a href="#shop">Full-Year System</a></li>
-            <li><a href="#shop">In-Season Program</a></li>
-            <li><a href="#shop">Young Slugger System</a></li>
-            <li><a href="#shop">Elite Coaching</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h5>Nutrition</h5>
-          <ul>
-            <li><a href="#shop">Female Athlete Blueprint</a></li>
-            <li><a href="#shop">Male Athlete Blueprint</a></li>
-            <li><a href="#perks">Marucci &amp; Victus Discount</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h5>Connect</h5>
-          <ul>
-            <li><a href="#about">About Joseph</a></li>
-            <li><a href="https://www.instagram.com/behind.the.seams.baseball/" target="_blank">DM "TRAIN"</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>Â© 2026 Behind the Seams Baseball Â· Joseph Kummick Â· All rights reserved.</p>
-        <p style="color:rgba(153,153,153,0.5)">behindtheseamsbaseball.com</p>
-      </div>
-    </div>
-  </footer>
 
-  <!-- âââââââ JS âââââââ -->
-  <script>
-    function toggleNav() {
-      document.getElementById('navLinks').classList.toggle('open');
+        <div class="prog-row">
+          <span class="prog-code">EV</span>
+          <div>
+            <div class="prog-name">100 MPH Exit Velocity Blueprint</div>
+            <div class="prog-desc">Bat speed, barrel control &amp; rotational power. Science-backed and game-tested.</div>
+          </div>
+          <span class="prog-price">Store</span>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
+        </div>
+
+        <div class="prog-row">
+          <span class="prog-code">SPD</span>
+          <div>
+            <div class="prog-name">Speed &amp; Sprint Training Program</div>
+            <div class="prog-desc">First-step speed, base-running acceleration &amp; outfield range.</div>
+          </div>
+          <span class="prog-price">Store</span>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
+        </div>
+
+        <div class="prog-row">
+          <span class="prog-code">SB</span>
+          <div>
+            <div class="prog-name">The Slump Buster System</div>
+            <div class="prog-desc">Mental &amp; mechanical reset to break any slump fast.</div>
+          </div>
+          <span class="prog-price">Store</span>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
+        </div>
+
+        <div class="prog-row">
+          <span class="prog-code">ARM</span>
+          <div>
+            <div class="prog-name">Arm Care Program</div>
+            <div class="prog-desc">Protect your arm &amp; throw harder. Strength, mobility &amp; injury prevention.</div>
+          </div>
+          <span class="prog-price">Store</span>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
+        </div>
+
+        <div class="prog-row">
+lex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 52px 56px;
+      gap: 20px;
     }
-    // Scroll fade-in
-    const fadeEls = document.querySelectorAll('.fade-up');
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    fadeEls.forEach(el => obs.observe(el));
-    // Nav scroll
-    window.addEventListener('scroll', () => {
-      const nav = document.getElementById('navbar');
-      if (window.scrollY > 50) {
-        nav.style.boxShadow = '0 2px 16px rgba(0,0,0,0.08)';
-        nav.style.borderBottomColor = '#e5e5e5';
-      } else {
-        nav.style.boxShadow = 'none';
-        nav.style.borderBottomColor = '#e5e5e5';
-      }
-    });
-    // Login redirect
-    function handleLogin() {
-      const email = document.querySelector('input[type="email"]').value;
-      if (!email) { alert('Please enter your email address.'); return; }
-      window.open('https://stan.store/behindtheseamsbaseball', '_blank');
+
+    .footer-brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1;
+      color: var(--text);
     }
-  </script>
-</body>
+
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 340px;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 24px;
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+    }
+    .f-link {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .f-link:hover { color: var(--text); }
+
+    .footer-copy {
+      font-size: 0.7rem;
+      color: rgba(107,130,160,0.6);
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <img src="images/logo.png" alt="Behind the Seams Baseball">
+    </div>
+    <ul class="nav-links">
+      <li><button data-sec="home"     class="active"  onclick="show('home',this)">Home</button></li>
+      <li><button data-sec="about"               onclick="show('about',this)">About</button></li>
+      <li><button data-sec="programs"            onclick="show('programs',this)">Programs</button></li>
+      <li><button data-sec="perks"               onclick="show('perks',this)">Perks</button></li>
+      <li><button data-sec="connect"             onclick="show('connect',this)">Connect</button></li>
+      <li><button class="nav-shop" onclick="window.open('https://stan.store/behindtheseamsbaseball','_blank')">Shop Now</button></li>
+    </ul>
+  </nav>
+
+  <div class="sections">
+
+    <!-- ââ HOME ââ -->
+    <section class="section active" id="home">
+      <div class="home-left">
+        <span class="eyebrow">Behind the Seams Baseball</span>
+        <h1 class="home-headline">
+          Helping<br>Hitters<br><em>Hit Harder.</em>
+        </h1>
+        <p class="home-sub">Science-backed hitting programs from a former D2 athlete. Exit Velocity, Power &amp; Consistency â built for players who take the game seriously.</p>
+        <div class="home-ctas">
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-primary">Shop Programs &rarr;</a>
+          <button class="btn-ghost" onclick="show('about', document.querySelector('[data-sec=about]'))">About Joseph</button>
+        </div>
+        <div class="home-stats">
+          <div class="stat">
+            <div class="stat-val">40K+</div>
+            <div class="stat-lbl">Athletes</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val">D2</div>
+            <div class="stat-lbl">Former Athlete</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val">5.0â</div>
+            <div class="stat-lbl">Avg Rating</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val">25%</div>
+            <div class="stat-lbl">Gear Discount</div>
+          </div>
+        </div>
+      </div>
+      <div class="home-right">
+        <img src="images/joseph.jpg" alt="Joseph Kummick â Behind the Seams Baseball">
+      </div>
+    </section>
+
+    <!-- ââ ABOUT ââ -->
+    <section class="section" id="about">
+      <div class="about-photo">
+        <img src="images/joseph.jpg" alt="Joseph Kummick">
+      </div>
+      <div class="about-content">
+        <span class="sec-label">Behind the Coach</span>
+        <h2 class="sec-headline">Turning Hitters<br>Into Athletes.</h2>
+        <p class="about-bio">
+          I'm Joseph Kummick â a Sports Performance graduate and former Division II baseball player. I built Behind the Seams Baseball to give serious players access to the same elite training principles used at the highest levels of the game. Whether you're chasing a college roster spot, pushing for the next level, or just want to see measurable gains at the plate â this is where your development happens.
+        </p>
+        <div class="creds">
+          <span class="cred">B.S. Sports Performance</span>
+          <span class="cred">Former D2 Athlete</span>
+          <span class="cred">Exit Velocity Specialist</span>
+          <span class="cred">Power Development</span>
+          <span class="cred">40,000+ Athletes</span>
+          <span class="cred">1:1 Coaching</span>
+        </div>
+        <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-primary" style="align-self:flex-start; margin-top:4px;">Train With Joseph &rarr;</a>
+      </div>
+    </section>
+
+    <!-- ââ PROGRAMS ââ -->
+    <section class="section" id="programs">
+      <div class="prog-header">
+        <h2 class="prog-title">Invest In Your<br>Development.</h2>
+        <p class="prog-note">All purchases include a lifetime 25% discount on Marucci &amp; Victus gear.</p>
+      </div>
+
+      <div class="prog-table">
+        <div class="prog-cat">Training Programs</div>
+
+        <div class="prog-row">
+          <span class="prog-code">FYS</span>
+          <div>
+            <div class="prog-name">Full-Year Baseball Performance System</div>
+            <div class="prog-desc">Complete annual blueprint â off-season through playoffs. 365 days of elite periodized training.</div>
+          </div>
+          <span class="prog-price">$97</span>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn hot">Get &rarr;</a>
+        </div>
+
+        <div class="prog-row">
+          <span class="prog-code">EV</span>
+          <div>
+            <div class="prog-name">100 MPH Exit Velocity Blueprint</div>
+            <div class="prog-desc">Bat speed, barrel control &amp; rotational power. Science-backed and game-tested.</div>
+          </div>
+          <span class="prog-price">Store</span>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
+        </div>
+
+        <div class="prog-row">
+          <span class="prog-code">SPD</span>
+          <div>
+            <div class="prog-name">Speed &amp; Sprint Training Program</div>
+            <div class="prog-desc">First-step speed, base-running acceleration &amp; outfield range.</div>
+          </div>
+          <span class="prog-price">Store</span>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
+        </div>
+
+        <div class="prog-row">
+          <span class="prog-code">SB</span>
+          <div>
+            <div class="prog-name">The Slump Buster System</div>
+            <div class="prog-desc">Mental &amp; mechanical reset to break any slump fast.</div>
+          </div>
+          <span class="prog-price">Store</span>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
+        </div>
+
+        <div class="prog-row">
+          <span class="prog-code">ARM</span>
+          <div>
+            <div class="prog-name">Arm Care Program</div>
+            <div class="prog-desc">Protect your arm &amp; throw harder. Strength, mobility &amp; injury prevention.</div>
+          </div>
+          <span class="prog-price">Store</span>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
+        </div>
+
+        <div class="prog-row">
+       <span class="prog-code">YSS</span>
+          <div>
+            <div class="prog-name">Young Slugger System</div>
+            <div class="prog-desc">Strength, skill &amp; confidence for ages 8â12. No weights required.</div>
+          </div>
+          <span class="prog-price">$19.99</span>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
+        </div>
+
+        <div class="prog-cat">Nutrition &amp; Performance</div>
+
+        <div class="prog-row">
+          <span class="prog-code">GDN</span>
+          <div>
+            <div class="prog-name">Game Day Nutrition System</div>
+            <div class="prog-desc">Pre-game, in-game &amp; post-game fuel to perform at your peak.</div>
+          </div>
+          <span class="prog-price">Store</span>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
+        </div>
+
+        <div class="prog-row">
+          <span class="prog-code">NUT</span>
+          <div>
+            <div class="prog-name">Baseball Performance Nutrition System</div>
+            <div class="prog-desc">Macros, meal timing &amp; supplementation built for baseball athletes.</div>
+          </div>
+          <span class="prog-price">Store</span>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
+        </div>
+
+        <div class="prog-cat">Coaching</div>
+
+        <div class="prog-row">
+          <span class="prog-code">1:1</span>
+          <div>
+            <div class="prog-name">Elite Baseball Coaching â Full Access</div>
+            <div class="prog-desc">Personal programming, video analysis &amp; weekly check-ins with Joseph.</div>
+          </div>
+          <span class="prog-price">$500</span>
+          <a href="https://www.instagram.com/behind.the.seams.baseball" target="_blank" class="prog-btn hot">DM "TRAIN"</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ââ PERKS ââ -->
+    <section class="section" id="perks">
+      <div class="perks-left">
+        <span class="sec-label">Exclusive Purchase Perk</span>
+        <div class="big-num"><span>25%</span><br>Lifetime<br>Discount.</div>
+        <div class="perks-brands">
+          <div class="brand-tag">â¾ Marucci</div>
+          <div class="brand-tag">â¾ Victus</div>
+        </div>
+        <p class="perks-body">Every purchase at Behind the Seams Baseball unlocks a lifetime 25% discount with Marucci and Victus â two of the best bat brands in the game. Save on the gear the pros trust, every single order.</p>
+        <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-primary" style="align-self:flex-start">Unlock Discount &rarr;</a>
+      </div>
+
+      <div class="perks-right">
+        <p class="reviews-label">What Athletes Say</p>
+        <div class="testimonial">
+          <div class="stars">âââââ</div>
+          <p class="t-text">"After two months of Joseph's programming, my exit velo jumped from 87 to 94 mph. The approach is different from anything I've tried â actually grounded in science."</p>
+          <p class="t-author">Tyler M. &nbsp;Â·&nbsp; High School Senior &nbsp;Â·&nbsp; OF</p>
+        </div>
+        <div class="testimonial">
+          <div class="stars">âââââ</div>
+          <p class="t-text">"The Full-Year Performance System is worth every penny. Clear, periodized, and you can tell it was built by someone who actually played the game at a high level."</p>
+          <p class="t-author">Marcus D. &nbsp;Â·&nbsp; JUCO Player &nbsp;Â·&nbsp; 2B</p>
+        </div>
+        <div class="testimonial">
+          <div class="stars">âââââ</div>
+          <p class="t-text">"The 1:1 coaching was a game changer for my son. He improved his launch angle and gained real confidence at the plate. The Marucci discount was a great bonus too!"</p>
+          <p class="t-author">Daniel S. &nbsp;Â·&nbsp; Travel Ball Parent &nbsp;Â·&nbsp; 14U</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ââ CONNECT ââ -->
+    <section class="section" id="connect">
+      <div class="connect-left">
+        <span class="sec-label">Follow the Journey</span>
+        <p class="ig-handle">@behind.the.seams.baseball</p>
+        <h2 class="connect-headline">Daily Content.<br>Real Results.<br><em>Follow Along.</em></h2>
+        <p class="connect-sub">Training tips, technique breakdowns, client results, and behind-the-scenes from Joseph â every single day.</p>
+        <div class="follower-row">
+          <span class="follower-num">40K+</span>
+          <span class="follower-lbl">Athletes Following</span>
+        </div>
+        <a href="https://www.instagram.com/behind.the.seams.baseball" target="_blank" class="btn-primary" style="align-self:flex-start">Follow on Instagram &rarr;</a>
+      </div>
+
+      <div class="connect-right">
+        <img src="images/logo.png" alt="BTS Baseball" style="height:44px;object-fit:contain;margin-bottom:4px;">
+        <h3 class="footer-brand">Behind the Seams<br>Baseball</h3>
+        <p class="footer-tagline">Helping hitters increase Exit Velocity, Power &amp; Consistency. Built by a player, for players.</p>
+        <div class="footer-links">
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="f-link">Full-Year System</a>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="f-link">In-Season Program</a>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="f-link">Young Slugger System</a>
+          <a href="https://www.instagram.com/behind.the.seams.baseball" target="_blank" class="f-link">Elite Coaching</a>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="f-link">Nutrition Guides</a>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="f-link">Female Athlete Blueprint</a>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="f-link">Male Athlete Blueprint</a>
+          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="f-link">Marucci &amp; Victus Discount</a>
+        </div>
+        <p class="footer-copy">Â© 2026 Behind the Seams Baseball Â· Joseph Kummick Â· All rights reserved.</p>
+      </div>
+    </section>
+
+  </div>
+  
+  
+  
+  
+  <sIÂÖ>
+    function show(id, btn) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.nav-links [data-sec]').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    }
+  
+  
+  </script>
+
+ </body>
 </html>
