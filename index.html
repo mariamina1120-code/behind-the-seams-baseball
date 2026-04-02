@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
   <style>
-    /* ── Reset & Base ── */
+    /* ââ Reset & Base ââ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --red:        #CC2200;
@@ -35,7 +35,7 @@
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
 
-    /* ── Utility ── */
+    /* ââ Utility ââ */
     .accent { color: var(--red); }
     .display {
       font-family: 'Barlow Condensed', sans-serif;
@@ -44,7 +44,7 @@
       letter-spacing: 0.02em;
     }
 
-    /* ── Nav ── */
+    /* ââ Nav ââ */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -105,7 +105,7 @@
     .nav-hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
     .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--black); }
 
-    /* ── Hero ── */
+    /* ââ Hero ââ */
     #hero {
       min-height: 100vh;
       display: flex;
@@ -142,7 +142,7 @@
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
       font-size: clamp(4rem, 12vw, 10rem);
-      line-height: 0.9;
+      line-height: 0.85;
       text-transform: uppercase;
       letter-spacing: 0.01em;
       margin-bottom: 1.5rem;
@@ -192,8 +192,8 @@
       color: var(--text-light); margin-top: 0.3rem;
     }
 
-    /* ── Sections ── */
-    section { padding: 6rem 1.5rem; }
+    /* ââ Sections ââ */
+    section { padding: 2.75rem 1.5rem; }
     .container { max-width: 1100px; margin: 0 auto; }
     .section-label {
       font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em;
@@ -208,7 +208,7 @@
     .section-desc { color: var(--text-muted); font-size: 0.95rem; max-width: 520px; margin-bottom: 3rem; line-height: 1.7; }
     .divider { width: 40px; height: 3px; background: var(--red); margin: 0.75rem 0 1.75rem; }
 
-    /* ── About ── */
+    /* ââ About ââ */
     #about { background: var(--bg-alt); }
     .about-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 5rem; align-items: center; }
     .about-photo-wrap { position: relative; }
@@ -244,14 +244,14 @@
       border-radius: 50%; flex-shrink: 0;
     }
 
-    /* ── Shop ── */
+    /* ââ Shop ââ */
     #shop { background: var(--bg); }
     .shop-category { margin-bottom: 3.5rem; }
     .cat-label {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900; font-size: 1.5rem; text-transform: uppercase;
       letter-spacing: 0.06em; border-left: 4px solid var(--red);
-      padding-left: 0.75rem; margin-bottom: 1.5rem; color: var(--black);
+      padding-left: 0.75rem; margin-bottom: 0.75rem; color: var(--black);
     }
     .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.25rem; }
     .product-card {
@@ -308,12 +308,12 @@
     }
     .btn-buy:hover { background: var(--red-light); }
 
-    /* ── Perks ── */
+    /* ââ Perks ââ */
     #perks { background: var(--black); }
     .perks-card {
       background: linear-gradient(135deg, rgba(204,34,0,0.08) 0%, rgba(204,34,0,0.02) 100%);
       border: 1px solid rgba(204,34,0,0.2);
-      border-radius: 14px; padding: 3rem;
+      border-radius: 14px; padding: 1.75rem;
       display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;
     }
     .perks-number {
@@ -335,9 +335,9 @@
       font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em; color: #fff;
     }
 
-    /* ── Members ── */
+    /* ââ Members ââ */
     #members { background: var(--bg-alt); }
-    .members-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: start; }
+    .members-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 2.5rem; align-items: start; }
     .features-list { display: flex; flex-direction: column; gap: 1.4rem; }
     .feat {
       display: flex; gap: 1rem; align-items: flex-start;
@@ -386,7 +386,7 @@
     .login-foot a { color: var(--red); }
     .login-foot a:hover { text-decoration: underline; }
 
-    /* ── Community ── */
+    /* ââ Community ââ */
     #community { background: var(--bg); }
     .community-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 1.25rem; margin-top: 3rem; }
     .comm-card {
@@ -416,7 +416,7 @@
     }
     .btn-outline:hover { background: var(--red); color: #fff; }
 
-    /* ── Testimonials ── */
+    /* ââ Testimonials ââ */
     #testimonials { background: var(--bg-alt); }
     .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.25rem; }
     .testi-card {
@@ -438,7 +438,7 @@
     .testi-name { font-weight: 700; font-size: 0.85rem; color: var(--black); }
     .testi-role { font-size: 0.73rem; color: var(--text-light); }
 
-    /* ── Instagram ── */
+    /* ââ Instagram ââ */
     #social { background: var(--bg); }
     .ig-feature {
       max-width: 680px; margin: 0 auto; text-align: center; padding: 2rem 0;
@@ -474,16 +474,16 @@
     }
     .btn-ig:hover { opacity: 0.85; transform: translateY(-2px); }
 
-    /* ── Footer ── */
+    /* ââ Footer ââ */
     footer {
       background: var(--black);
       border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 4rem 1.5rem 2rem;
+      padding: 2.25rem 1.5rem 1.25rem;
     }
     .footer-inner { max-width: 1100px; margin: 0 auto; }
     .footer-top {
       display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem; margin-bottom: 3rem;
+      gap: 3rem; margin-bottom: 1.75rem;
     }
     .footer-brand .f-logo-top {
       font-family: 'Barlow Condensed', sans-serif;
@@ -517,17 +517,17 @@
     }
     .footer-col ul li a:hover { color: #fff; }
     .footer-bottom {
-      padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.06);
       display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 0.75rem;
     }
     .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
 
-    /* ── Scroll fade ── */
+    /* ââ Scroll fade ââ */
     .fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .fade-up.visible { opacity: 1; transform: none; }
 
-    /* ── Responsive ── */
+    /* ââ Responsive ââ */
     @media (max-width: 900px) {
       nav { padding: 1rem 1.25rem; }
       .nav-links { display: none; }
@@ -555,7 +555,7 @@
 </head>
 <body>
 
-  <!-- ═══════ NAV ═══════ -->
+  <!-- âââââââ NAV âââââââ -->
   <nav id="navbar">
     <a href="#hero" class="nav-logo">
       <img src="images/logo.png" alt="Behind the Seams Baseball" style="height:40px;width:auto;display:block;" />
@@ -564,8 +564,6 @@
       <li><a href="#about">About</a></li>
       <li><a href="#shop">Programs</a></li>
       <li><a href="#perks">Perks</a></li>
-      <li><a href="#members">Members</a></li>
-      <li><a href="#community">Community</a></li>
       <li><a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="nav-cta">Shop Now</a></li>
     </ul>
     <div class="nav-hamburger" id="hamburger" onclick="toggleNav()">
@@ -573,17 +571,17 @@
     </div>
   </nav>
 
-  <!-- ═══════ HERO ═══════ -->
+  <!-- âââââââ HERO âââââââ -->
   <section id="hero">
     <div class="hero-bg"></div>
     <div class="hero-grid-lines"></div>
     <div class="hero-content">
-      <div class="hero-eyebrow">Performance Training &nbsp;·&nbsp; Digital Programs &nbsp;·&nbsp; 1-on-1 Coaching</div>
+      <div class="hero-eyebrow">Performance Training &nbsp;Â·&nbsp; Digital Programs &nbsp;Â·&nbsp; 1-on-1 Coaching</div>
       <h1 class="hero-h1">BEHIND<br/><span class="accent">THE SEAMS</span><br/>BASEBALL</h1>
-      <p class="hero-sub">Helping hitters increase Exit Velocity, Power &amp; Consistency. Science-backed programs from a B.S. in Sports Performance &amp; former D2 athlete — Joseph Kummick.</p>
+      <p class="hero-sub">Science-backed hitting programs from a former D2 athlete. Exit Velocity, Power &amp; Consistency.</p>
       <div class="hero-btns">
         <a href="#shop" class="btn-primary">Shop Programs</a>
-        <a href="#members" class="btn-secondary">Member Login</a>
+        <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-secondary">Member Login</a>
       </div>
       <div class="hero-stats">
         <div class="stat">
@@ -599,14 +597,14 @@
           <div class="stat-label">Marucci &amp; Victus</div>
         </div>
         <div class="stat">
-          <div class="stat-num">5.0★</div>
+          <div class="stat-num">5.0â</div>
           <div class="stat-label">Avg Rating</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════ ABOUT ═══════ -->
+  <!-- âââââââ ABOUT âââââââ -->
   <section id="about">
     <div class="container">
       <div class="about-grid">
@@ -623,10 +621,10 @@
           <h2 class="section-title">TURNING HITTERS<br/>INTO <span class="accent">ATHLETES</span></h2>
           <div class="divider"></div>
           <p style="color:var(--text);font-size:0.95rem;line-height:1.75;margin-bottom:1rem">
-            I'm Joseph Kummick — a Sports Performance graduate and former Division II baseball player. I built Behind the Seams Baseball to give serious players access to the same elite training principles used at the highest levels of the game.
+            I'm Joseph Kummick â a Sports Performance graduate and former Division II baseball player. I built Behind the Seams Baseball to give serious players access to the same elite training principles used at the highest levels of the game.
           </p>
           <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.75;margin-bottom:2rem">
-            Whether you're chasing a college roster spot, pushing for the next level, or just want to see measurable gains at the plate — this is where your development happens.
+            Whether you're chasing a college roster spot, pushing for the next level, or just want to see measurable gains at the plate â this is where your development happens.
           </p>
           <div class="creds">
             <div class="cred"><div class="cred-dot"></div> B.S. in Sports Performance</div>
@@ -641,7 +639,7 @@
     </div>
   </section>
 
-  <!-- ═══════ SHOP ═══════ -->
+  <!-- âââââââ SHOP âââââââ -->
   <section id="shop">
     <div class="container">
       <div class="section-label fade-up">Training Programs &amp; Guides</div>
@@ -661,7 +659,7 @@
             </div>
             <div class="product-body">
               <div class="product-name">The Full-Year Baseball Performance System</div>
-              <p class="product-desc">The complete annual training blueprint built around baseball's full performance cycle — off-season through playoffs. Transform your game in 365 days.</p>
+              <p class="product-desc">The complete annual training blueprint built around baseball's full performance cycle â off-season through playoffs. Transform your game in 365 days.</p>
               <div class="product-footer">
                 <div class="price-wrap"><div class="price-now">$97</div></div>
                 <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-buy">Get Program</a>
@@ -732,11 +730,11 @@
           <div class="product-card">
             <div class="product-img" style="background:linear-gradient(135deg,#0a1208,#102014)">
               <div class="prod-img-label">YSS</div>
-              <div class="prod-tag tag-red" style="background:#FFD700;color:#000">★ 5.0</div>
+              <div class="prod-tag tag-red" style="background:#FFD700;color:#000">â 5.0</div>
             </div>
             <div class="product-body">
               <div class="product-name">Young Slugger System</div>
-              <p class="product-desc">Building Strength, Skill & Confidence for 8–12 Year Olds. 4-week, at-home friendly program — no weights required. Created by Joseph Kummick.</p>
+              <p class="product-desc">Building Strength, Skill & Confidence for 8â12 Year Olds. 4-week, at-home friendly program â no weights required. Created by Joseph Kummick.</p>
               <div class="product-footer">
                 <div class="price-wrap"><div class="price-now">$19.99</div></div>
                 <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-buy">Get System</a>
@@ -789,7 +787,7 @@
             </div>
             <div class="product-body">
               <div class="product-name">Baseball Performance Nutrition System</div>
-              <p class="product-desc">A complete nutrition blueprint built specifically for baseball athletes — covering macros, meal timing, supplementation, and body composition for peak performance.</p>
+              <p class="product-desc">A complete nutrition blueprint built specifically for baseball athletes â covering macros, meal timing, supplementation, and body composition for peak performance.</p>
               <div class="product-footer">
                 <div class="price-wrap"><div class="price-now">See Store</div></div>
                 <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-buy">Get System</a>
@@ -802,7 +800,7 @@
     </div>
   </section>
 
-  <!-- ═══════ PERKS ═══════ -->
+  <!-- âââââââ PERKS âââââââ -->
   <section id="perks">
     <div class="container">
       <div class="section-label fade-up">Exclusive Purchase Perk</div>
@@ -812,10 +810,10 @@
         <div class="perks-number">25%</div>
         <div class="perks-body">
           <h3>Lifetime Discount on<br/><span class="accent">Marucci &amp; Victus</span></h3>
-          <p>Every purchase at Behind the Seams Baseball unlocks a <strong style="color:var(--white)">lifetime 25% discount</strong> with Marucci and Victus — two of the best bat brands in the game. Save on the gear the pros trust, every single order.</p>
+          <p>Every purchase at Behind the Seams Baseball unlocks a <strong style="color:var(--white)">lifetime 25% discount</strong> with Marucci and Victus â two of the best bat brands in the game. Save on the gear the pros trust, every single order.</p>
           <div class="brand-tags">
-            <div class="brand-tag">⚾ Marucci</div>
-            <div class="brand-tag">⚾ Victus</div>
+            <div class="brand-tag">â¾ Marucci</div>
+            <div class="brand-tag">â¾ Victus</div>
           </div>
         </div>
         <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-primary" style="white-space:nowrap">Unlock Discount</a>
@@ -823,146 +821,42 @@
     </div>
   </section>
 
-  <!-- ═══════ MEMBERS ═══════ -->
-  <section id="members">
-    <div class="container">
-      <div class="section-label fade-up">Member Portal</div>
-      <h2 class="section-title fade-up">ACCESS YOUR <span class="accent">CONTENT</span></h2>
-      <div class="divider fade-up"></div>
-      <div class="members-layout">
-
-        <div class="features-list fade-up">
-          <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:0.5rem;line-height:1.7">Members get instant access to the full training library, community, and exclusive content all in one place.</p>
-          <div class="feat">
-            <div class="feat-icon"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
-            <div class="feat-text">
-              <h4>Training Video Library</h4>
-              <p>Full access to technique breakdowns, swing mechanics, and strength protocols.</p>
-            </div>
-          </div>
-          <div class="feat">
-            <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
-            <div class="feat-text">
-              <h4>Digital Downloads</h4>
-              <p>All your purchased guides and programs — available on-demand, any device.</p>
-            </div>
-          </div>
-          <div class="feat">
-            <div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-            <div class="feat-text">
-              <h4>Q&amp;A Replays</h4>
-              <p>Never miss a live session — all Q&amp;As are saved and searchable in your portal.</p>
-            </div>
-          </div>
-          <div class="feat">
-            <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
-            <div class="feat-text">
-              <h4>Your Marucci &amp; Victus Discount</h4>
-              <p>Manage and access your lifetime 25% gear discount code from your account.</p>
-            </div>
-          </div>
-          <div style="margin-top:1rem">
-            <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-primary">Become a Member</a>
-          </div>
-        </div>
-
-        <div class="login-card fade-up" style="transition-delay:0.15s">
-          <h3>Member Login</h3>
-          <p>Already a member? Sign in to access your programs, downloads, and community.</p>
-          <form onsubmit="return false">
-            <div class="form-group">
-              <label>Email Address</label>
-              <input type="email" placeholder="you@email.com" />
-            </div>
-            <div class="form-group">
-              <label>Password</label>
-              <input type="password" placeholder="••••••••" />
-            </div>
-            <button class="btn-login" onclick="handleLogin()">Sign In</button>
-          </form>
-          <div class="login-foot">
-            <a href="https://stan.store/behindtheseamsbaseball" target="_blank">Forgot password?</a>
-            <a href="https://stan.store/behindtheseamsbaseball" target="_blank">Create account →</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ COMMUNITY ═══════ -->
-  <section id="community">
-    <div class="container">
-      <div class="section-label fade-up">Join the Movement</div>
-      <h2 class="section-title fade-up">YOU'RE NOT TRAINING <span class="accent">ALONE</span></h2>
-      <div class="divider fade-up"></div>
-      <p class="section-desc fade-up">Surround yourself with serious players putting in the work. Accountability, community, and knowledge — all under one roof.</p>
-      <div class="community-grid">
-        <div class="comm-card fade-up">
-          <div class="icon">
-            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </div>
-          <h4>Instagram Community</h4>
-          <p>40K+ athletes following along. Daily tips, technique videos, client wins, and behind-the-scenes content from Joseph.</p>
-          <a href="https://www.instagram.com/behind.the.seams.baseball/" target="_blank" class="btn-outline">Follow on Instagram</a>
-        </div>
-        <div class="comm-card fade-up" style="transition-delay:0.1s">
-          <div class="icon">
-            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <h4>Members Community</h4>
-          <p>Exclusive group for members — ask questions, share wins, get feedback, and connect with hitters who are on the same mission.</p>
-          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-outline">Join the Community</a>
-        </div>
-        <div class="comm-card fade-up" style="transition-delay:0.2s">
-          <div class="icon">
-            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <h4>Client Results</h4>
-          <p>Real athletes, real numbers. Follow the recruiting journey and performance gains of players Joseph has coached through his programs.</p>
-          <a href="https://www.instagram.com/behind.the.seams.baseball/" target="_blank" class="btn-outline">See Results</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ TESTIMONIALS ═══════ -->
-  <section id="testimonials">
+  <!-- âââââââ MEMBERS âââââââ -->
     <div class="container">
       <div class="section-label fade-up">What Athletes Say</div>
       <h2 class="section-title fade-up">REAL RESULTS FROM <span class="accent">REAL PLAYERS</span></h2>
       <div class="divider fade-up"></div>
       <div class="testi-grid">
         <div class="testi-card fade-up">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"After two months of Joseph's programming, my exit velo jumped from 87 to 94 mph. The approach is different from anything I've tried — actually grounded in science."</p>
+          <div class="stars">âââââ</div>
+          <p class="testi-text">"After two months of Joseph's programming, my exit velo jumped from 87 to 94 mph. The approach is different from anything I've tried â actually grounded in science."</p>
           <div class="testi-author">
             <div class="testi-avatar">TM</div>
             <div>
               <div class="testi-name">Tyler M.</div>
-              <div class="testi-role">High School Senior · OF</div>
+              <div class="testi-role">High School Senior Â· OF</div>
             </div>
           </div>
         </div>
         <div class="testi-card fade-up" style="transition-delay:0.1s">
-          <div class="stars">★★★★★</div>
+          <div class="stars">âââââ</div>
           <p class="testi-text">"The Full-Year Performance System is worth every penny. Clear, periodized, and you can tell it was built by someone who actually played the game at a high level."</p>
           <div class="testi-author">
             <div class="testi-avatar">MD</div>
             <div>
               <div class="testi-name">Marcus D.</div>
-              <div class="testi-role">JUCO Player · 2B</div>
+              <div class="testi-role">JUCO Player Â· 2B</div>
             </div>
           </div>
         </div>
         <div class="testi-card fade-up" style="transition-delay:0.2s">
-          <div class="stars">★★★★★</div>
+          <div class="stars">âââââ</div>
           <p class="testi-text">"The 1:1 coaching was a game changer for my son. He improved his launch angle and gained real confidence at the plate. The Marucci discount was a great bonus too!"</p>
           <div class="testi-author">
             <div class="testi-avatar">DS</div>
             <div>
               <div class="testi-name">Daniel S.</div>
-              <div class="testi-role">Travel Ball Parent · 14U</div>
+              <div class="testi-role">Travel Ball Parent Â· 14U</div>
             </div>
           </div>
         </div>
@@ -970,7 +864,7 @@
     </div>
   </section>
 
-  <!-- ═══════ INSTAGRAM ═══════ -->
+  <!-- âââââââ INSTAGRAM âââââââ -->
   <section id="social">
     <div class="container">
       <div class="ig-feature fade-up">
@@ -990,7 +884,7 @@
     </div>
   </section>
 
-  <!-- ═══════ FOOTER ═══════ -->
+  <!-- âââââââ FOOTER âââââââ -->
   <footer>
     <div class="footer-inner">
       <div class="footer-top">
@@ -1028,20 +922,18 @@
           <h5>Connect</h5>
           <ul>
             <li><a href="#about">About Joseph</a></li>
-            <li><a href="#members">Member Login</a></li>
-            <li><a href="#community">Community</a></li>
             <li><a href="https://www.instagram.com/behind.the.seams.baseball/" target="_blank">DM "TRAIN"</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Behind the Seams Baseball · Joseph Kummick · All rights reserved.</p>
+        <p>Â© 2026 Behind the Seams Baseball Â· Joseph Kummick Â· All rights reserved.</p>
         <p style="color:rgba(153,153,153,0.5)">behindtheseamsbaseball.com</p>
       </div>
     </div>
   </footer>
 
-  <!-- ═══════ JS ═══════ -->
+  <!-- âââââââ JS âââââââ -->
   <script>
     function toggleNav() {
       document.getElementById('navLinks').classList.toggle('open');
