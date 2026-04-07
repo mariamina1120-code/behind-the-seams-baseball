@@ -30,7 +30,7 @@
       color: var(--text);
     }
 
-    /* ââ NAV ââââââââââââââââââââââââââââââââ */
+    /* -- NAV -------------------------------- */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -82,7 +82,7 @@
     }
     .nav-shop:hover { background: var(--red-h) !important; }
 
-    /* ââ SECTIONS WRAPPER âââââââââââââââââââ */
+    /* -- SECTIONS WRAPPER ------------------- */
     .sections {
       position: fixed;
       top: var(--nav-h);
@@ -102,7 +102,7 @@
       pointer-events: all;
     }
 
-    /* ââ HOME âââââââââââââââââââââââââââââââ */
+    /* -- HOME ------------------------------- */
     #home {
       display: grid;
       grid-template-columns: 55% 45%;
@@ -262,7 +262,7 @@
       z-index: 1;
     }
 
-    /* ââ ABOUT ââââââââââââââââââââââââââââââ */
+    /* -- ABOUT ------------------------------ */
     #about {
       display: grid;
       grid-template-columns: 42% 1fr;
@@ -345,7 +345,7 @@
       color: var(--text);
     }
 
-    /* ââ PROGRAMS âââââââââââââââââââââââââââ */
+    /* -- PROGRAMS --------------------------- */
     #programs {
       display: flex;
       flex-direction: column;
@@ -461,7 +461,7 @@
       color: #fff;
     }
 
-    /* ââ PERKS ââââââââââââââââââââââââââââââ */
+    /* -- PERKS ------------------------------ */
     #perks {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -551,7 +551,7 @@
       letter-spacing: 0.04em;
     }
 
-    /* ââ CONNECT ââââââââââââââââââââââââââââ */
+    /* -- CONNECT ---------------------------- */
     #connect {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -678,14 +678,14 @@
 
   <div class="sections">
 
-    <!-- ââ HOME ââ -->
+    <!-- -- HOME -- -->
     <section class="section active" id="home">
       <div class="home-left">
         <span class="eyebrow">Behind the Seams Baseball</span>
         <h1 class="home-headline">
           Helping<br>Hitters<br><em>Hit Harder.</em>
         </h1>
-        <p class="home-sub">Science-backed hitting programs from a former D2 athlete. Exit Velocity, Power &amp; Consistency â built for players who take the game seriously.</p>
+        <p class="home-sub">Science-backed hitting programs from a former D2 athlete. Exit Velocity, Power &amp; Consistency &mdash; built for players who take the game seriously.</p>
         <div class="home-ctas">
           <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-primary">Shop Programs &rarr;</a>
           <button class="btn-ghost" onclick="show('about', document.querySelector('[data-sec=about]'))">About Joseph</button>
@@ -700,7 +700,7 @@
             <div class="stat-lbl">Former Athlete</div>
           </div>
           <div class="stat">
-            <div class="stat-val">5.0â</div>
+            <div class="stat-val">5.0&#9733;</div>
             <div class="stat-lbl">Avg Rating</div>
           </div>
           <div class="stat">
@@ -710,11 +710,11 @@
         </div>
       </div>
       <div class="home-right">
-        <img src="images/joseph.jpg" alt="Joseph Kummick â Behind the Seams Baseball">
+        <img src="images/joseph.jpg" alt="Joseph Kummick &mdash; Behind the Seams Baseball">
       </div>
     </section>
 
-    <!-- ââ ABOUT ââ -->
+    <!-- -- ABOUT -- -->
     <section class="section" id="about">
       <div class="about-photo">
         <img src="images/joseph.jpg" alt="Joseph Kummick">
@@ -723,7 +723,7 @@
         <span class="sec-label">Behind the Coach</span>
         <h2 class="sec-headline">Turning Hitters<br>Into Athletes.</h2>
         <p class="about-bio">
-          I'm Joseph Kummick â a Sports Performance graduate and former Division II baseball player. I built Behind the Seams Baseball to give serious players access to the same elite training principles used at the highest levels of the game. Whether you're chasing a college roster spot, pushing for the next level, or just want to see measurable gains at the plate â this is where your development happens.
+          I'm Joseph Kummick &mdash; a Sports Performance graduate and former Division II baseball player. I built Behind the Seams Baseball to give serious players access to the same elite training principles used at the highest levels of the game. Whether you're chasing a college roster spot, pushing for the next level, or just want to see measurable gains at the plate &mdash; this is where your development happens.
         </p>
         <div class="creds">
           <span class="cred">B.S. Sports Performance</span>
@@ -737,7 +737,7 @@
       </div>
     </section>
 
-    <!-- ââ PROGRAMS ââ -->
+    <!-- -- PROGRAMS -- -->
     <section class="section" id="programs">
       <div class="prog-header">
         <h2 class="prog-title">Invest In Your<br>Development.</h2>
@@ -751,7 +751,7 @@
           <span class="prog-code">FYS</span>
           <div>
             <div class="prog-name">Full-Year Baseball Performance System</div>
-            <div class="prog-desc">Complete annual blueprint â off-season through playoffs. 365 days of elite periodized training.</div>
+            <div class="prog-desc">Complete annual blueprint &mdash; off-season through playoffs. 365 days of elite periodized training.</div>
           </div>
           <span class="prog-price">$97</span>
           <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn hot">Get &rarr;</a>
@@ -798,195 +798,10 @@
         </div>
 
         <div class="prog-row">
-lex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 52px 56px;
-      gap: 20px;
-    }
-
-    .footer-brand {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 2rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      line-height: 1;
-      color: var(--text);
-    }
-
-    .footer-tagline {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.55;
-      max-width: 340px;
-    }
-
-    .footer-links {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px 24px;
-      border-top: 1px solid var(--border);
-      padding-top: 18px;
-    }
-    .f-link {
-      font-size: 0.82rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .f-link:hover { color: var(--text); }
-
-    .footer-copy {
-      font-size: 0.7rem;
-      color: rgba(107,130,160,0.6);
-      border-top: 1px solid var(--border);
-      padding-top: 16px;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- NAV -->
-  <nav>
-    <div class="nav-logo">
-      <img src="images/logo.png" alt="Behind the Seams Baseball">
-    </div>
-    <ul class="nav-links">
-      <li><button data-sec="home"     class="active"  onclick="show('home',this)">Home</button></li>
-      <li><button data-sec="about"               onclick="show('about',this)">About</button></li>
-      <li><button data-sec="programs"            onclick="show('programs',this)">Programs</button></li>
-      <li><button data-sec="perks"               onclick="show('perks',this)">Perks</button></li>
-      <li><button data-sec="connect"             onclick="show('connect',this)">Connect</button></li>
-      <li><button class="nav-shop" onclick="window.open('https://stan.store/behindtheseamsbaseball','_blank')">Shop Now</button></li>
-    </ul>
-  </nav>
-
-  <div class="sections">
-
-    <!-- ââ HOME ââ -->
-    <section class="section active" id="home">
-      <div class="home-left">
-        <span class="eyebrow">Behind the Seams Baseball</span>
-        <h1 class="home-headline">
-          Helping<br>Hitters<br><em>Hit Harder.</em>
-        </h1>
-        <p class="home-sub">Science-backed hitting programs from a former D2 athlete. Exit Velocity, Power &amp; Consistency â built for players who take the game seriously.</p>
-        <div class="home-ctas">
-          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-primary">Shop Programs &rarr;</a>
-          <button class="btn-ghost" onclick="show('about', document.querySelector('[data-sec=about]'))">About Joseph</button>
-        </div>
-        <div class="home-stats">
-          <div class="stat">
-            <div class="stat-val">40K+</div>
-            <div class="stat-lbl">Athletes</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val">D2</div>
-            <div class="stat-lbl">Former Athlete</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val">5.0â</div>
-            <div class="stat-lbl">Avg Rating</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val">25%</div>
-            <div class="stat-lbl">Gear Discount</div>
-          </div>
-        </div>
-      </div>
-      <div class="home-right">
-        <img src="images/joseph.jpg" alt="Joseph Kummick â Behind the Seams Baseball">
-      </div>
-    </section>
-
-    <!-- ââ ABOUT ââ -->
-    <section class="section" id="about">
-      <div class="about-photo">
-        <img src="images/joseph.jpg" alt="Joseph Kummick">
-      </div>
-      <div class="about-content">
-        <span class="sec-label">Behind the Coach</span>
-        <h2 class="sec-headline">Turning Hitters<br>Into Athletes.</h2>
-        <p class="about-bio">
-          I'm Joseph Kummick â a Sports Performance graduate and former Division II baseball player. I built Behind the Seams Baseball to give serious players access to the same elite training principles used at the highest levels of the game. Whether you're chasing a college roster spot, pushing for the next level, or just want to see measurable gains at the plate â this is where your development happens.
-        </p>
-        <div class="creds">
-          <span class="cred">B.S. Sports Performance</span>
-          <span class="cred">Former D2 Athlete</span>
-          <span class="cred">Exit Velocity Specialist</span>
-          <span class="cred">Power Development</span>
-          <span class="cred">40,000+ Athletes</span>
-          <span class="cred">1:1 Coaching</span>
-        </div>
-        <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-primary" style="align-self:flex-start; margin-top:4px;">Train With Joseph &rarr;</a>
-      </div>
-    </section>
-
-    <!-- ââ PROGRAMS ââ -->
-    <section class="section" id="programs">
-      <div class="prog-header">
-        <h2 class="prog-title">Invest In Your<br>Development.</h2>
-        <p class="prog-note">All purchases include a lifetime 25% discount on Marucci &amp; Victus gear.</p>
-      </div>
-
-      <div class="prog-table">
-        <div class="prog-cat">Training Programs</div>
-
-        <div class="prog-row">
-          <span class="prog-code">FYS</span>
-          <div>
-            <div class="prog-name">Full-Year Baseball Performance System</div>
-            <div class="prog-desc">Complete annual blueprint â off-season through playoffs. 365 days of elite periodized training.</div>
-          </div>
-          <span class="prog-price">$97</span>
-          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn hot">Get &rarr;</a>
-        </div>
-
-        <div class="prog-row">
-          <span class="prog-code">EV</span>
-          <div>
-            <div class="prog-name">100 MPH Exit Velocity Blueprint</div>
-            <div class="prog-desc">Bat speed, barrel control &amp; rotational power. Science-backed and game-tested.</div>
-          </div>
-          <span class="prog-price">Store</span>
-          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
-        </div>
-
-        <div class="prog-row">
-          <span class="prog-code">SPD</span>
-          <div>
-            <div class="prog-name">Speed &amp; Sprint Training Program</div>
-            <div class="prog-desc">First-step speed, base-running acceleration &amp; outfield range.</div>
-          </div>
-          <span class="prog-price">Store</span>
-          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
-        </div>
-
-        <div class="prog-row">
-          <span class="prog-code">SB</span>
-          <div>
-            <div class="prog-name">The Slump Buster System</div>
-            <div class="prog-desc">Mental &amp; mechanical reset to break any slump fast.</div>
-          </div>
-          <span class="prog-price">Store</span>
-          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
-        </div>
-
-        <div class="prog-row">
-          <span class="prog-code">ARM</span>
-          <div>
-            <div class="prog-name">Arm Care Program</div>
-            <div class="prog-desc">Protect your arm &amp; throw harder. Strength, mobility &amp; injury prevention.</div>
-          </div>
-          <span class="prog-price">Store</span>
-          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
-        </div>
-
-        <div class="prog-row">
-       <span class="prog-code">YSS</span>
+          <span class="prog-code">YSS</span>
           <div>
             <div class="prog-name">Young Slugger System</div>
-            <div class="prog-desc">Strength, skill &amp; confidence for ages 8â12. No weights required.</div>
+            <div class="prog-desc">Strength, skill &amp; confidence for ages 8&ndash;12. No weights required.</div>
           </div>
           <span class="prog-price">$19.99</span>
           <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
@@ -1019,7 +834,7 @@ lex;
         <div class="prog-row">
           <span class="prog-code">1:1</span>
           <div>
-            <div class="prog-name">Elite Baseball Coaching â Full Access</div>
+            <div class="prog-name">Elite Baseball Coaching &mdash; Full Access</div>
             <div class="prog-desc">Personal programming, video analysis &amp; weekly check-ins with Joseph.</div>
           </div>
           <span class="prog-price">$500</span>
@@ -1028,46 +843,46 @@ lex;
       </div>
     </section>
 
-    <!-- ââ PERKS ââ -->
+    <!-- -- PERKS -- -->
     <section class="section" id="perks">
       <div class="perks-left">
         <span class="sec-label">Exclusive Purchase Perk</span>
         <div class="big-num"><span>25%</span><br>Lifetime<br>Discount.</div>
         <div class="perks-brands">
-          <div class="brand-tag">â¾ Marucci</div>
-          <div class="brand-tag">â¾ Victus</div>
+          <div class="brand-tag">&#9918; Marucci</div>
+          <div class="brand-tag">&#9918; Victus</div>
         </div>
-        <p class="perks-body">Every purchase at Behind the Seams Baseball unlocks a lifetime 25% discount with Marucci and Victus â two of the best bat brands in the game. Save on the gear the pros trust, every single order.</p>
+        <p class="perks-body">Every purchase at Behind the Seams Baseball unlocks a lifetime 25% discount with Marucci and Victus &mdash; two of the best bat brands in the game. Save on the gear the pros trust, every single order.</p>
         <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="btn-primary" style="align-self:flex-start">Unlock Discount &rarr;</a>
       </div>
 
       <div class="perks-right">
         <p class="reviews-label">What Athletes Say</p>
         <div class="testimonial">
-          <div class="stars">âââââ</div>
-          <p class="t-text">"After two months of Joseph's programming, my exit velo jumped from 87 to 94 mph. The approach is different from anything I've tried â actually grounded in science."</p>
-          <p class="t-author">Tyler M. &nbsp;Â·&nbsp; High School Senior &nbsp;Â·&nbsp; OF</p>
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="t-text">"After two months of Joseph's programming, my exit velo jumped from 87 to 94 mph. The approach is different from anything I've tried &mdash; actually grounded in science."</p>
+          <p class="t-author">Tyler M. &nbsp;&middot;&nbsp; High School Senior &nbsp;&middot;&nbsp; OF</p>
         </div>
         <div class="testimonial">
-          <div class="stars">âââââ</div>
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="t-text">"The Full-Year Performance System is worth every penny. Clear, periodized, and you can tell it was built by someone who actually played the game at a high level."</p>
-          <p class="t-author">Marcus D. &nbsp;Â·&nbsp; JUCO Player &nbsp;Â·&nbsp; 2B</p>
+          <p class="t-author">Marcus D. &nbsp;&middot;&nbsp; JUCO Player &nbsp;&middot;&nbsp; 2B</p>
         </div>
         <div class="testimonial">
-          <div class="stars">âââââ</div>
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="t-text">"The 1:1 coaching was a game changer for my son. He improved his launch angle and gained real confidence at the plate. The Marucci discount was a great bonus too!"</p>
-          <p class="t-author">Daniel S. &nbsp;Â·&nbsp; Travel Ball Parent &nbsp;Â·&nbsp; 14U</p>
+          <p class="t-author">Daniel S. &nbsp;&middot;&nbsp; Travel Ball Parent &nbsp;&middot;&nbsp; 14U</p>
         </div>
       </div>
     </section>
 
-    <!-- ââ CONNECT ââ -->
+    <!-- -- CONNECT -- -->
     <section class="section" id="connect">
       <div class="connect-left">
         <span class="sec-label">Follow the Journey</span>
         <p class="ig-handle">@behind.the.seams.baseball</p>
         <h2 class="connect-headline">Daily Content.<br>Real Results.<br><em>Follow Along.</em></h2>
-        <p class="connect-sub">Training tips, technique breakdowns, client results, and behind-the-scenes from Joseph â every single day.</p>
+        <p class="connect-sub">Training tips, technique breakdowns, client results, and behind-the-scenes from Joseph &mdash; every single day.</p>
         <div class="follower-row">
           <span class="follower-num">40K+</span>
           <span class="follower-lbl">Athletes Following</span>
@@ -1089,25 +904,20 @@ lex;
           <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="f-link">Male Athlete Blueprint</a>
           <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="f-link">Marucci &amp; Victus Discount</a>
         </div>
-        <p class="footer-copy">Â© 2026 Behind the Seams Baseball Â· Joseph Kummick Â· All rights reserved.</p>
+        <p class="footer-copy">&copy; 2026 Behind the Seams Baseball &middot; Joseph Kummick &middot; All rights reserved.</p>
       </div>
     </section>
 
   </div>
-  
-  
-  
-  
-  <sIÂÖ>
+
+  <script>
     function show(id, btn) {
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
       document.getElementById(id).classList.add('active');
       document.querySelectorAll('.nav-links [data-sec]').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
     }
-  
-  
-  </script>
+  </script>
 
- </body>
+</body>
 </html>
