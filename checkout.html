@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Behind the Seams Baseball</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0f1e;
+      --surface: #111827;
+      --border: #1e2d45;
+      --text: #f0f4ff;
+      --muted: #6b82a0;
+      --red: #dc2626;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 40px; border-bottom: 1px solid var(--border); }
+    .nav-brand { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 900; text-transform: uppercase; color: var(--text); text-decoration: none; letter-spacing: 0.05em; }
+    .back-link { font-size: 0.82rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .back-link:hover { color: var(--text); }
+    .checkout-wrap { max-width: 600px; margin: 0 auto; padding: 48px 24px; }
+    .checkout-header { margin-bottom: 32px; }
+    .checkout-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+    .checkout-label::before { content: ''; width: 24px; height: 2px; background: var(--red); }
+    .checkout-title { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 900; text-transform: uppercase; color: var(--text); line-height: 1.05; }
+    #stripe-checkout-element { margin-top: 24px; }
+    .loading { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 0.9rem; }
+    .error-msg { background: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.3); border-radius: 6px; padding: 14px 18px; color: #fca5a5; font-size: 0.88rem; margin-top: 20px; }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-brand">Behind the Seams Baseball</a>
+    <a href="/" class="back-link">&larr; Back to Site</a>
+  </nav>
+  <div class="checkout-wrap">
+    <div class="checkout-header">
+      <div class="checkout-label">Secure Checkout</div>
+      <h1 class="checkout-title" id="product-name">Loading...</h1>
+    </div>
+    <div id="stripe-checkout-element"><div class="loading">Initializing secure payment...</div></div>
+    <div id="error-msg" class="error-msg" style="display:none;"></div>
+  </div>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    (async () => {
+      const params = new URLSearchParams(window.location.search);
+      const priceId = params.get('price');
+      const name = params.get('name') ? decodeURIComponent(params.get('name').replace(/\+/g,' ')) : 'Complete Your Purchase';
+      document.getElementById('product-name').textContent = name;
+      document.title = name + ' — Behind the Seams Baseball';
+      if (!priceId) { showError('Invalid checkout link. Please go back and try again.'); return; }
+      try {
+        const cfgRes = await fetch('/api/config');
+        const { publishableKey } = await cfgRes.json();
+        const stripe = Stripe(publishableKey);
+        const sessRes = await fetch('/api/create-checkout-session', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ priceId })
+        });
+        const { clientSecret, error } = await sessRes.json();
+        if (error) { showError(error); return; }
+        const checkout = await stripe.initEmbeddedCheckout({ clientSecret });
+        document.getElementById('stripe-checkout-element').innerHTML = '';
+        checkout.mount('#stripe-checkout-element');
+      } catch(e) { showError('Failed to load checkout. Please try again.'); console.error(e); }
+    })();
+    function showError(msg) {
+      const el = document.getElementById('error-msg');
+      el.textContent = msg; el.style.display = 'block';
+      document.getElementById('stripe-checkout-element').innerHTML = '';
+    }
+  </script>
+</body>
+</html>
