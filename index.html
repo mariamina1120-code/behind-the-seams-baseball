@@ -11,12 +11,12 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #0f1623;
-      --surface:   #16202f;
-      --surface-2: #1e2d42;
-      --border:    #2a3d57;
-      --text:      #dde7f5;
-      --muted:     #6b82a0;
+      --bg:        #f5f8fc;
+      --surface:   #ffffff;
+      --surface-2: #e9eff8;
+      --border:    #d6dfec;
+      --text:      #16202f;
+      --muted:     #5b6f8a;
       --red:       #dc2626;
       --red-h:     #b91c1c;
       --nav-h:     68px;
@@ -35,8 +35,9 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       height: var(--nav-h);
-      background: var(--bg);
+      background: var(--surface);
       border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 8px rgba(22,32,47,0.05);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -397,7 +398,7 @@
       transition: background 0.15s, padding 0.15s;
     }
     .prog-row:hover {
-      background: var(--surface);
+      background: var(--surface-2);
       padding: 11px 12px;
       margin: 0 -12px;
       border-color: transparent;
@@ -535,6 +536,7 @@
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 18px 20px;
+      box-shadow: 0 2px 10px rgba(22,32,47,0.05);
     }
     .stars { color: #f59e0b; font-size: 0.78rem; margin-bottom: 8px; letter-spacing: 2px; }
     .t-text {

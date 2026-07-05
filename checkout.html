@@ -7,15 +7,15 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0a0f1e;
-      --surface: #111827;
-      --border: #1e2d45;
-      --text: #f0f4ff;
-      --muted: #6b82a0;
+      --bg: #f5f8fc;
+      --surface: #ffffff;
+      --border: #d6dfec;
+      --text: #16202f;
+      --muted: #5b6f8a;
       --red: #dc2626;
     }
     body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 40px; border-bottom: 1px solid var(--border); }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 40px; border-bottom: 1px solid var(--border); background: var(--surface); }
     .nav-brand { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 900; text-transform: uppercase; color: var(--text); text-decoration: none; letter-spacing: 0.05em; }
     .back-link { font-size: 0.82rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .back-link:hover { color: var(--text); }
@@ -26,7 +26,7 @@
     .checkout-title { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 900; text-transform: uppercase; color: var(--text); line-height: 1.05; }
     #stripe-checkout-element { margin-top: 24px; }
     .loading { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 0.9rem; }
-    .error-msg { background: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.3); border-radius: 6px; padding: 14px 18px; color: #fca5a5; font-size: 0.88rem; margin-top: 20px; }
+    .error-msg { background: rgba(220,38,38,0.06); border: 1px solid rgba(220,38,38,0.3); border-radius: 6px; padding: 14px 18px; color: #b91c1c; font-size: 0.88rem; margin-top: 20px; }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
