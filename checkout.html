@@ -15,10 +15,12 @@
       --red: #dc2626;
     }
     body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 40px; border-bottom: 1px solid var(--border); background: var(--surface); }
-    .nav-brand { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 900; text-transform: uppercase; color: var(--text); text-decoration: none; letter-spacing: 0.05em; }
-    .back-link { font-size: 0.82rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .back-link:hover { color: var(--text); }
+    .promo-bar { height: 38px; background: var(--red); color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0 12px; white-space: nowrap; overflow: hidden; }
+    .promo-bar .code { background: #fff; color: var(--red); border-radius: 3px; padding: 2px 8px; letter-spacing: 0.12em; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 68px; border-bottom: 1px solid var(--border); background: var(--surface); box-shadow: 0 1px 8px rgba(22,32,47,0.05); }
+    .nav-logo img { height: 40px; object-fit: contain; }
+    .back-link { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; padding: 8px 16px; border-radius: 4px; transition: color 0.2s, background 0.2s; }
+    .back-link:hover { color: var(--text); background: #e9eff8; }
     .checkout-wrap { max-width: 600px; margin: 0 auto; padding: 48px 24px; }
     .checkout-header { margin-bottom: 32px; }
     .checkout-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
@@ -29,17 +31,19 @@
     .error-msg { background: rgba(220,38,38,0.06); border: 1px solid rgba(220,38,38,0.3); border-radius: 6px; padding: 14px 18px; color: #b91c1c; font-size: 0.88rem; margin-top: 20px; }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class="promo-bar">&#9918; Launch Offer &mdash; 20% off with code <span class="code">BTSBEGIN</span></div>
   <nav>
-    <a href="/" class="nav-brand">Behind the Seams Baseball</a>
+    <a href="/" class="nav-logo"><img src="images/logo.png" alt="Behind the Seams Baseball"></a>
     <a href="/" class="back-link">&larr; Back to Site</a>
   </nav>
   <div class="checkout-wrap">
     <div class="checkout-header">
       <div class="checkout-label">Secure Checkout</div>
       <h1 class="checkout-title" id="product-name">Loading...</h1>
+      <p style="margin-top:10px;font-size:0.85rem;color:var(--muted);">Have a code? Use <strong style="color:var(--red);">BTSBEGIN</strong> for 20% off &mdash; enter it below via &ldquo;Add promotion code.&rdquo;</p>
     </div>
     <div id="stripe-checkout-element"><div class="loading">Initializing secure payment...</div></div>
     <div id="error-msg" class="error-msg" style="display:none;"></div>

@@ -20,6 +20,36 @@
       --red:       #dc2626;
       --red-h:     #b91c1c;
       --nav-h:     68px;
+      --promo-h:   38px;
+    }
+
+    /* -- PROMO BAR -------------------------- */
+    .promo-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--promo-h);
+      background: var(--red);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      z-index: 101;
+      padding: 0 12px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .promo-bar .code {
+      background: #fff;
+      color: var(--red);
+      border-radius: 3px;
+      padding: 2px 8px;
+      letter-spacing: 0.12em;
     }
 
     html, body {
@@ -33,7 +63,7 @@
     /* -- NAV -------------------------------- */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: var(--promo-h); left: 0; right: 0;
       height: var(--nav-h);
       background: var(--surface);
       border-bottom: 1px solid var(--border);
@@ -86,7 +116,7 @@
     /* -- SECTIONS WRAPPER ------------------- */
     .sections {
       position: fixed;
-      top: var(--nav-h);
+      top: calc(var(--nav-h) + var(--promo-h));
       left: 0; right: 0; bottom: 0;
       overflow: hidden;
     }
@@ -614,6 +644,21 @@
       color: var(--muted);
     }
 
+    .photo-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      max-width: 440px;
+    }
+    .photo-strip img {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(22,32,47,0.08);
+    }
+
     .connect-right {
       display: flex;
       flex-direction: column;
@@ -663,6 +708,11 @@
 </head>
 <body>
 
+  <!-- PROMO BAR -->
+  <div class="promo-bar">
+    &#9918; Launch Offer &mdash; 20% off all programs with code <span class="code">BTSBEGIN</span> at checkout
+  </div>
+
   <!-- NAV -->
   <nav>
     <div class="nav-logo">
@@ -689,7 +739,7 @@
         </h1>
         <p class="home-sub">Science-backed hitting programs from a former D2 athlete. Exit Velocity, Power &amp; Consistency &mdash; built for players who take the game seriously.</p>
         <div class="home-ctas">
-          <a href="/checkout.html?price=price_1TCtCrE0ePNbtD9w8s1Bsovz&name=Full-Year+Baseball+Performance+System" target="_blank" class="btn-primary">Shop Programs &rarr;</a>
+          <a href="/checkout.html?price=price_1TCtCrE0ePNbtD9w8s1Bsovz&name=Full-Year+Baseball+Performance+System" class="btn-primary">Shop Programs &rarr;</a>
           <button class="btn-ghost" onclick="show('about', document.querySelector('[data-sec=about]'))">About Joseph</button>
         </div>
         <div class="home-stats">
@@ -712,14 +762,14 @@
         </div>
       </div>
       <div class="home-right">
-        <img src="images/joseph.jpg" alt="Joseph Kummick &mdash; Behind the Seams Baseball">
+        <img src="images/hero-stance.jpg" alt="Hitter loading up in the batting cage &mdash; Behind the Seams Baseball">
       </div>
     </section>
 
     <!-- -- ABOUT -- -->
     <section class="section" id="about">
       <div class="about-photo">
-        <img src="images/joseph.jpg" alt="Joseph Kummick">
+        <img src="images/joseph-pro.jpg" alt="Joseph Kummick">
       </div>
       <div class="about-content">
         <span class="sec-label">Behind the Coach</span>
@@ -743,7 +793,10 @@
     <section class="section" id="programs">
       <div class="prog-header">
         <h2 class="prog-title">Invest In Your<br>Development.</h2>
-        <p class="prog-note">All purchases include a lifetime 25% discount on Marucci &amp; Victus gear.</p>
+        <div style="text-align:right;">
+          <div style="display:inline-block;background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.25);color:var(--red);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;border-radius:4px;margin-bottom:6px;">Save 20% today &middot; Code BTSBEGIN</div>
+          <p class="prog-note">All purchases include a lifetime 25% discount on Marucci &amp; Victus gear.</p>
+        </div>
       </div>
 
       <div class="prog-table">
@@ -756,7 +809,7 @@
             <div class="prog-desc">Complete annual blueprint &mdash; off-season through playoffs. 365 days of elite periodized training.</div>
           </div>
           <span class="prog-price">$97</span>
-          <a href="/checkout.html?price=price_1TCtCrE0ePNbtD9w8s1Bsovz&name=Full-Year+Baseball+Performance+System" target="_blank" class="prog-btn hot">Get &rarr;</a>
+          <a href="/checkout.html?price=price_1TCtCrE0ePNbtD9w8s1Bsovz&name=Full-Year+Baseball+Performance+System" class="prog-btn hot">Get &rarr;</a>
         </div>
 
         <div class="prog-row">
@@ -766,7 +819,7 @@
             <div class="prog-desc">Bat speed, barrel control &amp; rotational power. Science-backed and game-tested.</div>
           </div>
           <span class="prog-price">$49</span>
-          <a href="/checkout.html?price=price_1TD5AlE0ePNbtD9wGTBSV6Cw&name=100+MPH+Exit+Velocity+Blueprint" target="_blank" class="prog-btn">Get &rarr;</a>
+          <a href="/checkout.html?price=price_1TD5AlE0ePNbtD9wGTBSV6Cw&name=100+MPH+Exit+Velocity+Blueprint" class="prog-btn">Get &rarr;</a>
         </div>
 
         <div class="prog-row">
@@ -806,7 +859,7 @@
             <div class="prog-desc">Strength, skill &amp; confidence for ages 8&ndash;12. No weights required.</div>
           </div>
           <span class="prog-price">$19.99</span>
-          <a href="/checkout.html?price=price_1TD6yHE0ePNbtD9wJcWT2RQH&name=Young+Slugger+System" target="_blank" class="prog-btn">Get &rarr;</a>
+          <a href="/checkout.html?price=price_1TD6yHE0ePNbtD9wJcWT2RQH&name=Young+Slugger+System" class="prog-btn">Get &rarr;</a>
         </div>
 
         <div class="prog-cat">Nutrition &amp; Performance</div>
@@ -818,7 +871,7 @@
             <div class="prog-desc">Hormone-safe nutrition for girls 10&ndash;18 to support cycles, energy, growth &amp; performance.</div>
           </div>
           <span class="prog-price">$30</span>
-          <a href="/checkout.html?price=price_1TD6xXE0ePNbtD9wyeurbsPv&name=Female+Athlete+Hormone+Nutrition+Blueprint" target="_blank" class="prog-btn">Get &rarr;</a>
+          <a href="/checkout.html?price=price_1TD6xXE0ePNbtD9wyeurbsPv&name=Female+Athlete+Hormone+Nutrition+Blueprint" class="prog-btn">Get &rarr;</a>
         </div>
 
         <div class="prog-row">
@@ -828,7 +881,7 @@
             <div class="prog-desc">Hormone-supportive nutrition for youth male athletes to grow stronger &amp; perform better.</div>
           </div>
           <span class="prog-price">$30</span>
-          <a href="/checkout.html?price=price_1TD6wCE0ePNbtD9w2eYOULPR&name=Male+Athlete+Hormone+Nutrition+Blueprint" target="_blank" class="prog-btn">Get &rarr;</a>
+          <a href="/checkout.html?price=price_1TD6wCE0ePNbtD9w2eYOULPR&name=Male+Athlete+Hormone+Nutrition+Blueprint" class="prog-btn">Get &rarr;</a>
         </div>
 
         <div class="prog-cat">Coaching</div>
@@ -840,7 +893,7 @@
             <div class="prog-desc">Personal programming, video analysis &amp; weekly check-ins with Joseph.</div>
           </div>
           <span class="prog-price">$500<span style="font-size:0.6rem;font-weight:400;color:var(--muted)">/mo</span></span>
-          <a href="/checkout.html?price=price_1TD74ME0ePNbtD9wojBjZQre&name=Elite+Baseball+Coaching+%E2%80%94+Full+Access" target="_blank" class="prog-btn hot">Get &rarr;</a>
+          <a href="/checkout.html?price=price_1TD74ME0ePNbtD9wojBjZQre&name=Elite+Baseball+Coaching+%E2%80%94+Full+Access" class="prog-btn hot">Get &rarr;</a>
         </div>
       </div>
     </section>
@@ -855,7 +908,7 @@
           <div class="brand-tag">&#9918; Victus</div>
         </div>
         <p class="perks-body">Every purchase at Behind the Seams Baseball unlocks a lifetime 25% discount with Marucci and Victus &mdash; two of the best bat brands in the game. Save on the gear the pros trust, every single order.</p>
-        <a href="/checkout.html?price=price_1TCtCrE0ePNbtD9w8s1Bsovz&name=Full-Year+Baseball+Performance+System" target="_blank" class="btn-primary" style="align-self:flex-start">Unlock Discount &rarr;</a>
+        <a href="/checkout.html?price=price_1TCtCrE0ePNbtD9w8s1Bsovz&name=Full-Year+Baseball+Performance+System" class="btn-primary" style="align-self:flex-start">Unlock Discount &rarr;</a>
       </div>
 
       <div class="perks-right">
@@ -885,6 +938,11 @@
         <p class="ig-handle">@behind.the.seams.baseball</p>
         <h2 class="connect-headline">Daily Content.<br>Real Results.<br><em>Follow Along.</em></h2>
         <p class="connect-sub">Training tips, technique breakdowns, client results, and behind-the-scenes from Joseph &mdash; every single day.</p>
+        <div class="photo-strip">
+          <img src="images/swing-cage.jpg" alt="Athlete swing training in the cage">
+          <img src="images/power-throw.jpg" alt="Joseph doing rotational med-ball power work">
+          <img src="images/tee-sunset.jpg" alt="Athlete hitting off the tee at sunset">
+        </div>
         <div class="follower-row">
           <span class="follower-num">40K+</span>
           <span class="follower-lbl">Athletes Following</span>
@@ -897,12 +955,12 @@
         <h3 class="footer-brand">Behind the Seams<br>Baseball</h3>
         <p class="footer-tagline">Helping hitters increase Exit Velocity, Power &amp; Consistency. Built by a player, for players.</p>
         <div class="footer-links">
-          <a href="/checkout.html?price=price_1TCtCrE0ePNbtD9w8s1Bsovz&name=Full-Year+Baseball+Performance+System" target="_blank" class="f-link">Full-Year System</a>
-          <a href="/checkout.html?price=price_1TD5AlE0ePNbtD9wGTBSV6Cw&name=100+MPH+Exit+Velocity+Blueprint" target="_blank" class="f-link">Exit Velocity Blueprint</a>
-          <a href="/checkout.html?price=price_1TD6yHE0ePNbtD9wJcWT2RQH&name=Young+Slugger+System" target="_blank" class="f-link">Young Slugger System</a>
-          <a href="/checkout.html?price=price_1TD74ME0ePNbtD9wojBjZQre&name=Elite+Baseball+Coaching+%E2%80%94+Full+Access" target="_blank" class="f-link">Elite Coaching</a>
-          <a href="/checkout.html?price=price_1TD6wCE0ePNbtD9w2eYOULPR&name=Male+Athlete+Hormone+Nutrition+Blueprint" target="_blank" class="f-link">Male Athlete Blueprint</a>
-          <a href="/checkout.html?price=price_1TD6xXE0ePNbtD9wyeurbsPv&name=Female+Athlete+Hormone+Nutrition+Blueprint" target="_blank" class="f-link">Female Athlete Blueprint</a>
+          <a href="/checkout.html?price=price_1TCtCrE0ePNbtD9w8s1Bsovz&name=Full-Year+Baseball+Performance+System" class="f-link">Full-Year System</a>
+          <a href="/checkout.html?price=price_1TD5AlE0ePNbtD9wGTBSV6Cw&name=100+MPH+Exit+Velocity+Blueprint" class="f-link">Exit Velocity Blueprint</a>
+          <a href="/checkout.html?price=price_1TD6yHE0ePNbtD9wJcWT2RQH&name=Young+Slugger+System" class="f-link">Young Slugger System</a>
+          <a href="/checkout.html?price=price_1TD74ME0ePNbtD9wojBjZQre&name=Elite+Baseball+Coaching+%E2%80%94+Full+Access" class="f-link">Elite Coaching</a>
+          <a href="/checkout.html?price=price_1TD6wCE0ePNbtD9w2eYOULPR&name=Male+Athlete+Hormone+Nutrition+Blueprint" class="f-link">Male Athlete Blueprint</a>
+          <a href="/checkout.html?price=price_1TD6xXE0ePNbtD9wyeurbsPv&name=Female+Athlete+Hormone+Nutrition+Blueprint" class="f-link">Female Athlete Blueprint</a>
           <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="f-link">Marucci &amp; Victus Discount</a>
         </div>
         <p class="footer-copy">&copy; 2026 Behind the Seams Baseball &middot; Joseph Kummick &middot; All rights reserved.</p>
