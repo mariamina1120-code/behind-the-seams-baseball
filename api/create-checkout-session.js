@@ -16,6 +16,7 @@ module.exports = async (req, res) => {
       ui_mode: 'embedded',
       line_items: [{ price: priceId, quantity: 1 }],
       mode,
+      allow_promotion_codes: true,
       return_url: `${origin}/success.html?session_id={CHECKOUT_SESSION_ID}`,
     });
     res.json({ clientSecret: session.client_secret });
