@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Login — Behind the Seams Baseball</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #f5f8fc; --surface: #ffffff; --border: #d6dfec; --text: #16202f; --muted: #5b6f8a; --red: #dc2626; --red-h: #b91c1c; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 68px; border-bottom: 1px solid var(--border); background: var(--surface); box-shadow: 0 1px 8px rgba(22,32,47,0.05); }
+    .nav-logo img { height: 40px; object-fit: contain; }
+    .back-link { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; padding: 8px 16px; border-radius: 4px; transition: color 0.2s, background 0.2s; }
+    .back-link:hover { color: var(--text); background: #e9eff8; }
+    .wrap { max-width: 420px; margin: 0 auto; padding: 56px 24px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 40px 36px; box-shadow: 0 4px 20px rgba(22,32,47,0.06); }
+    .label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+    .label::before { content: ''; width: 24px; height: 2px; background: var(--red); }
+    h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 900; text-transform: uppercase; line-height: 1.05; margin-bottom: 8px; }
+    .sub { font-size: 0.86rem; color: var(--muted); line-height: 1.6; margin-bottom: 26px; }
+    .field { margin-bottom: 16px; }
+    .field label { display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .field input { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.95rem; font-family: inherit; color: var(--text); background: #fff; }
+    .field input:focus { outline: 2px solid rgba(220,38,38,0.35); border-color: var(--red); }
+    .btn { width: 100%; background: var(--red); color: #fff; font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s; margin-top: 6px; }
+    .btn:hover { background: var(--red-h); }
+    .btn:disabled { opacity: 0.6; cursor: wait; }
+    .switch { text-align: center; font-size: 0.83rem; color: var(--muted); margin-top: 18px; }
+    .switch a { color: var(--red); font-weight: 600; text-decoration: none; cursor: pointer; }
+    .msg { border-radius: 6px; padding: 12px 16px; font-size: 0.85rem; margin-bottom: 18px; display: none; line-height: 1.5; }
+    .msg.error { background: rgba(220,38,38,0.06); border: 1px solid rgba(220,38,38,0.3); color: #b91c1c; }
+    .msg.ok { background: rgba(22,163,74,0.07); border: 1px solid rgba(22,163,74,0.3); color: #15803d; }
+    .hint { font-size: 0.78rem; color: var(--muted); margin-top: 16px; line-height: 1.55; background: #eef3fa; border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px; }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo"><img src="images/logo.png" alt="Behind the Seams Baseball"></a>
+    <a href="/" class="back-link">&larr; Back to Site</a>
+  </nav>
+  <div class="wrap">
+    <div class="card">
+      <div class="label">Members Area</div>
+      <h1 id="form-title">Log In</h1>
+      <p class="sub" id="form-sub">Access your purchased programs.</p>
+      <div id="msg" class="msg"></div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" autocomplete="email" placeholder="you@example.com">
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" autocomplete="current-password" placeholder="••••••••">
+      </div>
+      <button class="btn" id="submit-btn" onclick="submitForm()">Log In</button>
+      <p class="switch" id="switch-line">New here? <a onclick="setMode('signup')">Create an account</a></p>
+      <p class="hint">Use the <strong>same email you used at checkout</strong> — that&rsquo;s how we match your purchases to your account.</p>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script>
+    const sb = supabase.createClient(
+      'https://jcijkhvherbfhwzgazor.supabase.co',
+      'sb_publishable_YVuKxweDMiGMQkVyzdVEsg_7Zv8mbhu'
+    );
+    let mode = 'login';
+    const params = new URLSearchParams(location.search);
+    if (params.get('signup')) setMode('signup');
+    if (params.get('email')) document.getElementById('email').value = params.get('email');
+
+    // Already logged in? Straight to portal.
+    sb.auth.getSession().then(({ data }) => { if (data.session) location.href = '/portal.html'; });
+
+    function setMode(m) {
+      mode = m;
+      document.getElementById('form-title').textContent = m === 'signup' ? 'Create Account' : 'Log In';
+      document.getElementById('form-sub').textContent = m === 'signup'
+        ? 'Set up your account to access your programs.'
+        : 'Access your purchased programs.';
+      document.getElementById('submit-btn').textContent = m === 'signup' ? 'Create Account' : 'Log In';
+      document.getElementById('switch-line').innerHTML = m === 'signup'
+        ? 'Already have an account? <a onclick="setMode(\'login\')">Log in</a>'
+        : 'New here? <a onclick="setMode(\'signup\')">Create an account</a>';
+      showMsg('', '');
+    }
+    function showMsg(text, cls) {
+      const el = document.getElementById('msg');
+      el.textContent = text; el.className = 'msg ' + cls;
+      el.style.display = text ? 'block' : 'none';
+    }
+    async function submitForm() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      if (!email || !password) { showMsg('Please enter your email and a password.', 'error'); return; }
+      const btn = document.getElementById('submit-btn'); btn.disabled = true;
+      try {
+        if (mode === 'signup') {
+          const { error } = await sb.auth.signUp({ email, password });
+          if (error) throw error;
+          showMsg('Account created! Check your email for a confirmation link, then come back and log in.', 'ok');
+        } else {
+          const { error } = await sb.auth.signInWithPassword({ email, password });
+          if (error) throw error;
+          location.href = '/portal.html';
+        }
+      } catch (e) {
+        showMsg(e.message || 'Something went wrong. Please try again.', 'error');
+      } finally { btn.disabled = false; }
+    }
+    document.getElementById('password').addEventListener('keydown', e => { if (e.key === 'Enter') submitForm(); });
+  </script>
+</body>
+</html>

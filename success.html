@@ -34,7 +34,22 @@
       <li>Lifetime 25% discount on Marucci &amp; Victus gear unlocked</li>
       <li>Science-backed, periodized training built by a D2 athlete</li>
     </ul>
-    <a href="/" class="btn-primary">Back to Site &rarr;</a>
+    <a href="/login.html?signup=1" id="portal-btn" class="btn-primary">Access My Program &rarr;</a>
+    <p style="font-size:0.78rem;color:var(--muted);margin-top:14px;line-height:1.5;">Create your member account with the <strong>same email you just used at checkout</strong> to unlock your program content.</p>
   </div>
+  <script>
+    // Record this purchase so it appears in the member portal
+    (async () => {
+      const sid = new URLSearchParams(location.search).get('session_id');
+      if (!sid) return;
+      try {
+        const r = await fetch('/api/verify-session?session_id=' + encodeURIComponent(sid));
+        const d = await r.json();
+        if (d && d.email) {
+          document.getElementById('portal-btn').href = '/login.html?signup=1&email=' + encodeURIComponent(d.email);
+        }
+      } catch (e) { console.error(e); }
+    })();
+  </script>
 </body>
 </html>

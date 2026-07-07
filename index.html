@@ -380,8 +380,9 @@
     #programs {
       display: flex;
       flex-direction: column;
-      padding: 32px 52px 24px;
+      padding: 32px 52px 40px;
       height: 100%;
+      overflow-y: auto;
     }
 
     .prog-header {
@@ -404,93 +405,86 @@
       color: var(--muted);
     }
 
-    .prog-table { flex: 1; }
-
     .prog-cat {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--red);
-      padding: 10px 0 7px;
-      border-bottom: 1px solid var(--border);
+      padding: 22px 0 10px;
     }
 
-    .prog-row {
+    .prog-featured {
       display: grid;
-      grid-template-columns: 56px 1fr 72px 90px;
-      align-items: center;
-      gap: 16px;
-      padding: 11px 0;
-      border-bottom: 1px solid rgba(42,61,87,0.6);
-      border-radius: 4px;
-      transition: background 0.15s, padding 0.15s;
-    }
-    .prog-row:hover {
-      background: var(--surface-2);
-      padding: 11px 12px;
-      margin: 0 -12px;
-      border-color: transparent;
-    }
-
-    .prog-code {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      color: var(--red);
-      background: rgba(220,38,38,0.1);
-      border: 1px solid rgba(220,38,38,0.2);
-      padding: 3px 6px;
-      border-radius: 3px;
-      text-align: center;
-    }
-
-    .prog-name {
-      font-weight: 600;
-      font-size: 0.88rem;
-      color: var(--text);
-      line-height: 1.3;
-    }
-    .prog-desc {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 2px;
-      line-height: 1.4;
-    }
-
-    .prog-price {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text);
-      text-align: right;
-      white-space: nowrap;
-    }
-
-    .prog-btn {
-      background: transparent;
+      grid-template-columns: 1fr 1.15fr;
+      background: var(--surface);
       border: 1px solid var(--border);
-      color: var(--muted);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 22px rgba(22,32,47,0.08);
+      min-height: 250px;
+    }
+    .prog-featured .pf-img { position: relative; overflow: hidden; }
+    .prog-featured .pf-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; position: absolute; inset: 0; }
+    .pf-body { padding: 30px 36px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+    .pf-tag {
+      align-self: flex-start;
+      background: var(--red); color: #fff;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 6px 12px;
-      border-radius: 3px;
-      cursor: pointer;
-      text-decoration: none;
-      text-align: center;
-      transition: all 0.18s;
-      white-space: nowrap;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 3px;
     }
-    .prog-btn:hover, .prog-btn.hot {
-      background: var(--red);
-      border-color: var(--red);
-      color: #fff;
+    .pf-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.6rem, 2.4vw, 2.3rem);
+      font-weight: 900; text-transform: uppercase; line-height: 1.02;
     }
+    .pf-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; max-width: 420px; }
+    .pf-foot { display: flex; align-items: center; gap: 18px; margin-top: 4px; }
+    .pf-price { font-family: 'Barlow Condensed', sans-serif; font-size: 1.9rem; font-weight: 900; }
+    .pf-price s { font-size: 1.1rem; color: var(--muted); font-weight: 600; margin-right: 8px; }
+
+    .prog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 14px;
+    }
+    .prog-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 22px;
+      display: flex; flex-direction: column; gap: 9px;
+      box-shadow: 0 2px 10px rgba(22,32,47,0.05);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .prog-card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(22,32,47,0.10); }
+    .pc-code {
+      align-self: flex-start;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      color: var(--red); background: rgba(220,38,38,0.08);
+      border: 1px solid rgba(220,38,38,0.2);
+      padding: 3px 8px; border-radius: 3px;
+    }
+    .pc-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem; font-weight: 900; text-transform: uppercase; line-height: 1.08;
+    }
+    .pc-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+    .pc-foot { margin-top: auto; padding-top: 12px; display: flex; align-items: center; justify-content: space-between; }
+    .pc-price { font-family: 'Barlow Condensed', sans-serif; font-size: 1.25rem; font-weight: 900; }
+    .pc-btn {
+      background: var(--red); color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 8px 18px; border-radius: 4px; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .pc-btn:hover { background: var(--red-h); }
+    .pc-btn.ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+    .pc-btn.ghost:hover { color: var(--text); border-color: var(--text); background: transparent; }
 
     /* -- PERKS ------------------------------ */
     #perks {
@@ -724,7 +718,8 @@
       <li><button data-sec="programs"            onclick="show('programs',this)">Programs</button></li>
       <li><button data-sec="perks"               onclick="show('perks',this)">Perks</button></li>
       <li><button data-sec="connect"             onclick="show('connect',this)">Connect</button></li>
-      <li><button class="nav-shop" onclick="window.open('https://stan.store/behindtheseamsbaseball','_blank')">Shop Now</button></li>
+      <li><button onclick="location.href='/login.html'">Login</button></li>
+      <li><button class="nav-shop" onclick="show('programs', document.querySelector('[data-sec=programs]'))">Shop Now</button></li>
     </ul>
   </nav>
 
@@ -799,101 +794,77 @@
         </div>
       </div>
 
-      <div class="prog-table">
-        <div class="prog-cat">Training Programs</div>
-
-        <div class="prog-row">
-          <span class="prog-code">FYS</span>
-          <div>
-            <div class="prog-name">Full-Year Baseball Performance System</div>
-            <div class="prog-desc">Complete annual blueprint &mdash; off-season through playoffs. 365 days of elite periodized training.</div>
+      <!-- Featured program -->
+      <div class="prog-featured">
+        <div class="pf-img"><img src="images/swing-cage.jpg" alt="Athlete training in the cage"></div>
+        <div class="pf-body">
+          <span class="pf-tag">Most Popular</span>
+          <h3 class="pf-name">Full-Year Baseball<br>Performance System</h3>
+          <p class="pf-desc">The complete annual blueprint &mdash; off-season through playoffs. 365 days of elite periodized training built to raise exit velocity, power, and consistency all year long.</p>
+          <div class="pf-foot">
+            <span class="pf-price">$97</span>
+            <a href="/checkout.html?price=price_1TCtCrE0ePNbtD9w8s1Bsovz&name=Full-Year+Baseball+Performance+System" class="btn-primary">Get The System &rarr;</a>
           </div>
-          <span class="prog-price">$97</span>
-          <a href="/checkout.html?price=price_1TCtCrE0ePNbtD9w8s1Bsovz&name=Full-Year+Baseball+Performance+System" class="prog-btn hot">Get &rarr;</a>
         </div>
+      </div>
 
-        <div class="prog-row">
-          <span class="prog-code">EV</span>
-          <div>
-            <div class="prog-name">100 MPH Exit Velocity Blueprint</div>
-            <div class="prog-desc">Bat speed, barrel control &amp; rotational power. Science-backed and game-tested.</div>
-          </div>
-          <span class="prog-price">$49</span>
-          <a href="/checkout.html?price=price_1TD5AlE0ePNbtD9wGTBSV6Cw&name=100+MPH+Exit+Velocity+Blueprint" class="prog-btn">Get &rarr;</a>
+      <div class="prog-cat">Training Programs</div>
+      <div class="prog-grid">
+        <div class="prog-card">
+          <span class="pc-code">EV</span>
+          <h4 class="pc-name">100 MPH Exit Velocity Blueprint</h4>
+          <p class="pc-desc">Bat speed, barrel control &amp; rotational power. Science-backed and game-tested.</p>
+          <div class="pc-foot"><span class="pc-price">$49</span><a href="/checkout.html?price=price_1TD5AlE0ePNbtD9wGTBSV6Cw&name=100+MPH+Exit+Velocity+Blueprint" class="pc-btn">Get &rarr;</a></div>
         </div>
-
-        <div class="prog-row">
-          <span class="prog-code">SPD</span>
-          <div>
-            <div class="prog-name">Speed &amp; Sprint Training Program</div>
-            <div class="prog-desc">First-step speed, base-running acceleration &amp; outfield range.</div>
-          </div>
-          <span class="prog-price">Store</span>
-          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
+        <div class="prog-card">
+          <span class="pc-code">YSS</span>
+          <h4 class="pc-name">Young Slugger System</h4>
+          <p class="pc-desc">Strength, skill &amp; confidence for ages 8&ndash;12. No weights required.</p>
+          <div class="pc-foot"><span class="pc-price">$19.99</span><a href="/checkout.html?price=price_1TD6yHE0ePNbtD9wJcWT2RQH&name=Young+Slugger+System" class="pc-btn">Get &rarr;</a></div>
         </div>
-
-        <div class="prog-row">
-          <span class="prog-code">SB</span>
-          <div>
-            <div class="prog-name">The Slump Buster System</div>
-            <div class="prog-desc">Mental &amp; mechanical reset to break any slump fast.</div>
-          </div>
-          <span class="prog-price">Store</span>
-          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
+        <div class="prog-card">
+          <span class="pc-code">SPD</span>
+          <h4 class="pc-name">Speed &amp; Sprint Training</h4>
+          <p class="pc-desc">First-step speed, base-running acceleration &amp; outfield range.</p>
+          <div class="pc-foot"><span class="pc-price">Store</span><a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="pc-btn ghost">Get &rarr;</a></div>
         </div>
-
-        <div class="prog-row">
-          <span class="prog-code">ARM</span>
-          <div>
-            <div class="prog-name">Arm Care Program</div>
-            <div class="prog-desc">Protect your arm &amp; throw harder. Strength, mobility &amp; injury prevention.</div>
-          </div>
-          <span class="prog-price">Store</span>
-          <a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="prog-btn">Get &rarr;</a>
+        <div class="prog-card">
+          <span class="pc-code">SB</span>
+          <h4 class="pc-name">The Slump Buster System</h4>
+          <p class="pc-desc">Mental &amp; mechanical reset to break any slump fast.</p>
+          <div class="pc-foot"><span class="pc-price">Store</span><a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="pc-btn ghost">Get &rarr;</a></div>
         </div>
-
-        <div class="prog-row">
-          <span class="prog-code">YSS</span>
-          <div>
-            <div class="prog-name">Young Slugger System</div>
-            <div class="prog-desc">Strength, skill &amp; confidence for ages 8&ndash;12. No weights required.</div>
-          </div>
-          <span class="prog-price">$19.99</span>
-          <a href="/checkout.html?price=price_1TD6yHE0ePNbtD9wJcWT2RQH&name=Young+Slugger+System" class="prog-btn">Get &rarr;</a>
+        <div class="prog-card">
+          <span class="pc-code">ARM</span>
+          <h4 class="pc-name">Arm Care Program</h4>
+          <p class="pc-desc">Protect your arm &amp; throw harder. Strength, mobility &amp; injury prevention.</p>
+          <div class="pc-foot"><span class="pc-price">Store</span><a href="https://stan.store/behindtheseamsbaseball" target="_blank" class="pc-btn ghost">Get &rarr;</a></div>
         </div>
+      </div>
 
-        <div class="prog-cat">Nutrition &amp; Performance</div>
-
-        <div class="prog-row">
-          <span class="prog-code">GDN</span>
-          <div>
-            <div class="prog-name">Female Athlete Hormone Nutrition Blueprint</div>
-            <div class="prog-desc">Hormone-safe nutrition for girls 10&ndash;18 to support cycles, energy, growth &amp; performance.</div>
-          </div>
-          <span class="prog-price">$30</span>
-          <a href="/checkout.html?price=price_1TD6xXE0ePNbtD9wyeurbsPv&name=Female+Athlete+Hormone+Nutrition+Blueprint" class="prog-btn">Get &rarr;</a>
+      <div class="prog-cat">Nutrition &amp; Performance</div>
+      <div class="prog-grid">
+        <div class="prog-card">
+          <span class="pc-code">GDN</span>
+          <h4 class="pc-name">Female Athlete Hormone Nutrition Blueprint</h4>
+          <p class="pc-desc">Hormone-safe nutrition for girls 10&ndash;18 to support cycles, energy, growth &amp; performance.</p>
+          <div class="pc-foot"><span class="pc-price">$30</span><a href="/checkout.html?price=price_1TD6xXE0ePNbtD9wyeurbsPv&name=Female+Athlete+Hormone+Nutrition+Blueprint" class="pc-btn">Get &rarr;</a></div>
         </div>
-
-        <div class="prog-row">
-          <span class="prog-code">NUT</span>
-          <div>
-            <div class="prog-name">Male Athlete Hormone Nutrition Blueprint</div>
-            <div class="prog-desc">Hormone-supportive nutrition for youth male athletes to grow stronger &amp; perform better.</div>
-          </div>
-          <span class="prog-price">$30</span>
-          <a href="/checkout.html?price=price_1TD6wCE0ePNbtD9w2eYOULPR&name=Male+Athlete+Hormone+Nutrition+Blueprint" class="prog-btn">Get &rarr;</a>
+        <div class="prog-card">
+          <span class="pc-code">NUT</span>
+          <h4 class="pc-name">Male Athlete Hormone Nutrition Blueprint</h4>
+          <p class="pc-desc">Hormone-supportive nutrition for youth male athletes to grow stronger &amp; perform better.</p>
+          <div class="pc-foot"><span class="pc-price">$30</span><a href="/checkout.html?price=price_1TD6wCE0ePNbtD9w2eYOULPR&name=Male+Athlete+Hormone+Nutrition+Blueprint" class="pc-btn">Get &rarr;</a></div>
         </div>
+      </div>
 
-        <div class="prog-cat">Coaching</div>
-
-        <div class="prog-row">
-          <span class="prog-code">1:1</span>
-          <div>
-            <div class="prog-name">Elite Baseball Coaching &mdash; Full Access</div>
-            <div class="prog-desc">Personal programming, video analysis &amp; weekly check-ins with Joseph.</div>
-          </div>
-          <span class="prog-price">$500<span style="font-size:0.6rem;font-weight:400;color:var(--muted)">/mo</span></span>
-          <a href="/checkout.html?price=price_1TD74ME0ePNbtD9wojBjZQre&name=Elite+Baseball+Coaching+%E2%80%94+Full+Access" class="prog-btn hot">Get &rarr;</a>
+      <div class="prog-cat">Coaching</div>
+      <div class="prog-grid">
+        <div class="prog-card">
+          <span class="pc-code">1:1</span>
+          <h4 class="pc-name">Elite Baseball Coaching &mdash; Full Access</h4>
+          <p class="pc-desc">Personal programming, video analysis &amp; weekly check-ins with Joseph.</p>
+          <div class="pc-foot"><span class="pc-price">$500<span style="font-size:0.7rem;font-weight:600;color:var(--muted)">/mo</span></span><a href="/checkout.html?price=price_1TD74ME0ePNbtD9wojBjZQre&name=Elite+Baseball+Coaching+%E2%80%94+Full+Access" class="pc-btn">Get &rarr;</a></div>
         </div>
       </div>
     </section>

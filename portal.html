@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Programs — Behind the Seams Baseball</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #f5f8fc; --surface: #ffffff; --surface-2: #e9eff8; --border: #d6dfec; --text: #16202f; --muted: #5b6f8a; --red: #dc2626; --red-h: #b91c1c; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 68px; border-bottom: 1px solid var(--border); background: var(--surface); box-shadow: 0 1px 8px rgba(22,32,47,0.05); }
+    .nav-logo img { height: 40px; object-fit: contain; }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .nav-link { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; padding: 8px 16px; border-radius: 4px; transition: color 0.2s, background 0.2s; background: none; border: none; cursor: pointer; }
+    .nav-link:hover { color: var(--text); background: var(--surface-2); }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+    .label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+    .label::before { content: ''; width: 24px; height: 2px; background: var(--red); }
+    h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 2.6rem; font-weight: 900; text-transform: uppercase; line-height: 1; margin-bottom: 8px; }
+    .sub { font-size: 0.9rem; color: var(--muted); margin-bottom: 36px; }
+    .program { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(22,32,47,0.05); overflow: hidden; }
+    .program-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 26px; cursor: pointer; }
+    .program-head:hover { background: #fafcff; }
+    .program-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.35rem; font-weight: 900; text-transform: uppercase; line-height: 1.1; }
+    .program-desc { font-size: 0.82rem; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+    .chev { font-size: 1.1rem; color: var(--muted); transition: transform 0.2s; flex-shrink: 0; }
+    .program.open .chev { transform: rotate(90deg); }
+    .program-body { display: none; padding: 4px 26px 26px; border-top: 1px solid var(--border); font-size: 0.92rem; line-height: 1.7; color: var(--text); }
+    .program.open .program-body { display: block; padding-top: 20px; }
+    .program-body h2, .program-body h3 { font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; margin: 18px 0 8px; }
+    .program-body p { margin-bottom: 12px; }
+    .program-body em { color: var(--muted); }
+    .empty { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 48px 36px; text-align: center; box-shadow: 0 2px 10px rgba(22,32,47,0.05); }
+    .empty h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 900; text-transform: uppercase; margin-bottom: 10px; }
+    .empty p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; max-width: 420px; margin: 0 auto 24px; }
+    .btn { display: inline-block; background: var(--red); color: #fff; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 30px; border-radius: 6px; text-decoration: none; transition: background 0.2s; }
+    .btn:hover { background: var(--red-h); }
+    .loading { text-align: center; color: var(--muted); padding: 80px 0; font-size: 0.9rem; }
+    .perk-note { margin-top: 28px; background: rgba(220,38,38,0.05); border: 1px solid rgba(220,38,38,0.2); border-radius: 8px; padding: 16px 20px; font-size: 0.85rem; line-height: 1.6; color: var(--text); }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo"><img src="images/logo.png" alt="Behind the Seams Baseball"></a>
+    <div class="nav-actions">
+      <a href="/" class="nav-link">&larr; Site</a>
+      <button class="nav-link" onclick="logout()">Log Out</button>
+    </div>
+  </nav>
+  <div class="wrap">
+    <div class="label">Members Portal</div>
+    <h1>My Programs</h1>
+    <p class="sub" id="who"></p>
+    <div id="content"><div class="loading">Loading your programs&hellip;</div></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script>
+    const sb = supabase.createClient(
+      'https://jcijkhvherbfhwzgazor.supabase.co',
+      'sb_publishable_YVuKxweDMiGMQkVyzdVEsg_7Zv8mbhu'
+    );
+    async function logout() { await sb.auth.signOut(); location.href = '/login.html'; }
+
+    (async () => {
+      const { data: { session } } = await sb.auth.getSession();
+      if (!session) { location.href = '/login.html'; return; }
+      document.getElementById('who').textContent = 'Signed in as ' + session.user.email;
+
+      const [{ data: purchases, error: pErr }, { data: programs, error: gErr }] = await Promise.all([
+        sb.from('purchases').select('price_id, product_name, created_at'),
+        sb.from('programs').select('price_id, name, description, content_html, sort').order('sort')
+      ]);
+      const box = document.getElementById('content');
+      if (pErr || gErr) {
+        box.innerHTML = '<div class="empty"><h2>Something went wrong</h2><p>Please refresh the page or try again shortly.</p></div>';
+        return;
+      }
+      if (!purchases || purchases.length === 0) {
+        box.innerHTML = `<div class="empty">
+          <h2>No programs yet</h2>
+          <p>We couldn't find any purchases under <strong>${session.user.email}</strong>. If you bought a program with a different email, contact us and we'll move it over &mdash; or grab your first program below.</p>
+          <a class="btn" href="/#programs">Browse Programs &rarr;</a>
+        </div>`;
+        return;
+      }
+      const owned = new Set(purchases.map(p => p.price_id));
+      const items = (programs || []).filter(g => owned.has(g.price_id));
+      // Purchases without a matching program row (e.g. legacy) still get listed
+      const knownIds = new Set(items.map(i => i.price_id));
+      purchases.filter(p => !knownIds.has(p.price_id)).forEach(p =>
+        items.push({ price_id: p.price_id, name: p.product_name, description: '', content_html: '<p><em>Content coming soon.</em></p>' }));
+
+      box.innerHTML = items.map((g, i) => `
+        <div class="program" id="prog${i}">
+          <div class="program-head" onclick="document.getElementById('prog${i}').classList.toggle('open')">
+            <div>
+              <div class="program-name">${g.name}</div>
+              <div class="program-desc">${g.description || ''}</div>
+            </div>
+            <span class="chev">&#9656;</span>
+          </div>
+          <div class="program-body">${g.content_html || '<p><em>Content coming soon.</em></p>'}</div>
+        </div>`).join('')
+        + `<div class="perk-note">&#9918; <strong>Your lifetime perk is active:</strong> every purchase unlocks a 25% discount on Marucci &amp; Victus gear. Reach out on Instagram <strong>@behind.the.seams.baseball</strong> to claim your code.</div>`;
+      if (items.length === 1) document.getElementById('prog0').classList.add('open');
+    })();
+  </script>
+</body>
+</html>
